@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis Research Insights | Market Research Agrochemical</title>
+    
+    <!-- Pemuatan Font untuk Theme Utama Genesis -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Pemuatan Font Khusus untuk Agri-Intelligence Brief (di dalam Modal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Tailwind Config untuk Utama & Intelligence Brief -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Mendukung Dark Mode untuk Intelligence Brief
+            theme: {
+                extend: {
+                    colors: {
+                        agro: {
+                            light: '#e8f5e9',
+                            DEFAULT: '#4caf50',
+                            dark: '#2e7d32',
+                            accent: '#fbc02d'
+                        },
+                        // Warna Neo-Brutalism untuk Intelligence Brief
+                        zinc: { 50: '#fafafa', 100: '#f4f4f5', 200: '#e4e4e7', 300: '#d4d4d8', 400: '#a1a1aa', 500: '#71717a', 600: '#52525b', 700: '#3f3f46', 800: '#27272a', 850: '#1f1f22', 900: '#18181b', 950: '#09090b', 955: '#040405' },
+                        emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 650: '#047857' },
+                        amber: { 350: '#fcd34d', 400: '#fbbf24', 500: '#f59e0b' },
+                        fuchsia: { 400: '#e879f9', 500: '#d946ef', 600: '#c026d3' },
+                        indigo: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        // Font Khusus Intelligence Brief
+                        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+                        display: ['DM Sans', 'sans-serif'],
+                    },
+                    borderWidth: { '3': '3px' },
+                    animation: { 'spin-slow': 'spin 4s linear infinite', 'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite', 'loading-bar': 'loading 1.5s ease-in-out infinite' },
+                    keyframes: {
+                        loading: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(400%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* === STYLES UNTUK THEME UTAMA GENESIS === */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Efek Neon Glow untuk Modal 360 */
+        .neon-circle {
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5), inset 0 0 15px rgba(76, 175, 80, 0.3);
+            animation: neonPulseGreen 2s infinite alternate;
+        }
+        .neon-dashed {
+            filter: drop-shadow(0 0 6px rgba(76, 175, 80, 0.9));
+        }
+        .neon-box {
+            box-shadow: 0 0 15px rgba(251, 192, 45, 0.6);
+            animation: neonPulseYellow 2s infinite alternate;
+        }
+
+        @keyframes neonPulseGreen {
+            from { box-shadow: 0 0 10px rgba(76, 175, 80, 0.3), inset 0 0 10px rgba(76, 175, 80, 0.2); }
+            to { box-shadow: 0 0 25px rgba(76, 175, 80, 0.7), inset 0 0 20px rgba(76, 175, 80, 0.5); }
+        }
+        @keyframes neonPulseYellow {
+            from { box-shadow: 0 0 10px rgba(251, 192, 45, 0.4); }
+            to { box-shadow: 0 0 25px rgba(251, 192, 45, 0.9); }
+        }
+
+        /* Custom scrollbar umum */
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+
+        /* === STYLES KHUSUS UNTUK MODAL INTELLIGENCE BRIEF (NEO-BRUTALISM) === */
+        #intel-brief-modal {
+            /* Kita pastikan scroll behavior halus khusus di dalam modal ini */
+            scroll-behavior: smooth; font-feature-settings: "liga" 1, "clig" 1; -webkit-font-smoothing: antialiased;
+        }
+        /* Scoping class neo-brutalism HANYA untuk modal intel */
+        #intel-brief-modal .pattern-bg { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; background-color: #f1f5f9; color: #09090b;}
+        #intel-brief-modal.dark .pattern-bg { background-image: radial-gradient(#27272a 1px, transparent 1px); background-color: #0c0c0e; color: #f4f4f5;}
+
+        #intel-brief-modal ::selection { background-color: #10B981; color: #fff; }
+
+        #intel-brief-modal .scrollbar-hide::-webkit-scrollbar { display: none; }
+        #intel-brief-modal .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        #intel-brief-modal .neo-shadow { box-shadow: 4px 4px 0px 0px rgba(9, 9, 11, 1); transition: all 0.2s ease-out; }
+        #intel-brief-modal.dark .neo-shadow { box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.1); }
+
+        #intel-brief-modal .neo-shadow-lg { box-shadow: 6px 6px 0px 0px rgba(9, 9, 11, 1); transition: all 0.2s ease-out; }
+        #intel-brief-modal.dark .neo-shadow-lg { box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 0.15); }
+
+        #intel-brief-modal .neo-interactive:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px 0px rgba(9, 9, 11, 1); }
+        #intel-brief-modal.dark .neo-interactive:hover { box-shadow: 2px 2px 0px 0px rgba(255, 255, 255, 0.1); }
+
+        #intel-brief-modal .neo-btn:active { transform: translate(3px, 3px) !important; box-shadow: 0px 0px 0px 0px rgba(9, 9, 11, 1) !important; }
+
+        /* Print media query diisolasi agar tidak merusak halaman utama jika kebetulan keprint */
+        @media print {
+            body.printing-intel { background: #fff !important; color: #000 !important; }
+            body.printing-intel #main-content { display: none !important; } /* Sembunyikan web genesis */
+            body.printing-intel #intel-brief-modal { display: block !important; position: static !important; overflow: visible !important; }
+            body.printing-intel .no-print, nav, button, input { display: none !important; }
+            body.printing-intel .neo-shadow, body.printing-intel .neo-shadow-lg { box-shadow: none !important; border: 1px solid #ccc !important; }
+            body.printing-intel .print-break-inside-avoid { break-inside: avoid; }
+        }
+
+        #intel-brief-modal.pdf-exporting { background-color: #ffffff !important; background-image: none !important; color: #000 !important; height: auto !important; overflow: visible !important; position: static !important; z-index: 1!important;}
+        #intel-brief-modal.pdf-exporting .pattern-bg { background-image: none !important; }
+        #intel-brief-modal.pdf-exporting .neo-shadow, #intel-brief-modal.pdf-exporting .neo-shadow-lg, #intel-brief-modal.pdf-exporting tr { page-break-inside: avoid !important; break-inside: avoid !important; }
+        #intel-brief-modal.pdf-exporting header { margin-bottom: 20px !important; }
+        #intel-brief-modal.pdf-exporting .no-print { display: none !important;}
+        #intel-brief-modal.pdf-exporting #close-intel-modal { display: none !important; }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+
+    <!-- Container Utama Website -->
+    <div id="main-content">
+        <!-- Navigation -->
+        <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300" id="navbar">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-28 items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0); return false;">
+                        <img src="Black on White.png" alt="Genesis Logo" class="h-24 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://placehold.co/240x96/ffffff/4caf50?text=Genesis+Logo'">
+                        <span class="font-bold text-xl text-gray-900 tracking-tight">Genesis <span class="text-agro">Research</span></span>
+                    </a>
+                    <div class="hidden md:flex space-x-8 items-center">
+                        <a href="#layanan" class="text-gray-600 hover:text-agro transition-colors font-medium">Layanan</a>
+                        <a href="#insight" class="text-gray-600 hover:text-agro transition-colors font-medium">Insights</a>
+                        <a href="#about-genesis" class="text-gray-600 hover:text-agro transition-colors font-medium">About Genesis</a>
+                        <a href="#kontak" class="bg-agro text-white px-5 py-2 rounded-full hover:bg-agro-dark transition-colors font-medium shadow-md">Hubungi Kami</a>
+                    </div>
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden flex items-center">
+                        <button id="mobile-menu-btn" class="text-gray-600 hover:text-agro focus:outline-none">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full border-t border-gray-100 z-50">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#layanan" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-agro hover:bg-gray-50">Layanan</a>
+                    <a href="#insight" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-agro hover:bg-gray-50">Insights</a>
+                    <a href="#about-genesis" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-agro hover:bg-gray-50">About Genesis</a>
+                    <a href="#kontak" class="block px-3 py-2 text-base font-medium text-agro hover:bg-gray-50">Hubungi Kami</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1592982537447-6f2da3c0c166?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Agrochemical Field" class="w-full h-full object-cover opacity-20">
+                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="lg:w-2/3 fade-in">
+                    <span class="inline-block py-1 px-3 rounded-full bg-agro-light text-agro-dark text-sm font-semibold mb-4 border border-agro/20">Data Driven Agrochemical Intelligence</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                        Arahkan Strategi Agribisnis Anda dengan <span class="text-transparent bg-clip-text bg-gradient-to-r from-agro to-agro-dark">Data Akurat</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed">
+                        Kami menyediakan riset pasar mendalam dan analisis intelijen komprehensif khusus untuk industri agrokimia (pupuk, pestisida, dan benih) di Indonesia.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#layanan" class="bg-agro text-white px-8 py-3 rounded-full hover:bg-agro-dark transition-all text-center font-medium shadow-lg hover:shadow-xl text-lg flex items-center justify-center gap-2">
+                            Jelajahi Layanan <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="#insight" class="bg-white text-agro-dark border-2 border-agro/30 px-8 py-3 rounded-full hover:border-agro transition-all text-center font-medium text-lg">
+                            Lihat Publikasi Terbaru
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats/Trust Section -->
+        <section class="py-12 bg-agro-dark text-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold text-agro-accent mb-2">7+</div>
+                        <div class="text-sm font-medium text-gray-300 uppercase tracking-wider">Tahun Pengalaman</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-agro-accent mb-2">50+</div>
+                        <div class="text-sm font-medium text-gray-300 uppercase tracking-wider">Proyek Riset</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-agro-accent mb-2">10</div>
+                        <div class="text-sm font-medium text-gray-300 uppercase tracking-wider">Klien Strategis</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-agro-accent mb-2">34</div>
+                        <div class="text-sm font-medium text-gray-300 uppercase tracking-wider">Provinsi Dicakup</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Genesis Section -->
+    <section id="about-genesis" class="py-20 bg-white border-b border-gray-100 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-12 items-stretch">
+                <div class="lg:w-2/5 flex justify-center">
+                    <div class="bg-gray-50 rounded-3xl p-4 md:p-6 shadow-sm border border-gray-100 w-full h-full flex">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Genesis Modern Building" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                </div>
+                <div class="lg:w-3/5 py-4">
+                    <span class="text-agro-DEFAULT font-semibold tracking-wider uppercase text-sm">About Genesis</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6">Wawasan Pasar yang Mendalam untuk Keputusan Strategis</h2>
+                        <div class="space-y-4 text-gray-600 leading-relaxed">
+                            <p>Kami membantu perusahaan di berbagai industri memperoleh <strong>wawasan konsumen yang mendalam</strong> melalui teknik riset pasar yang komprehensif dan iteratif.</p>
+                            <p>Kami mengumpulkan insight mendalam mengenai performa dan persepsi merek dibandingkan kompetitor, sehingga perusahaan dapat menganalisis apa yang penting bagi konsumen di setiap titik kontak.</p>
+                            <p>Kami melakukan <strong>deep dive terhadap permintaan pasar</strong> untuk:</p>
+                            <ul class="list-disc pl-6 space-y-2 marker:text-agro">
+                                <li>Mengidentifikasi bagaimana pelanggan membuat pilihan produk dan pertukaran saat menggunakan serta membeli produk (<em>behavioral segmentation</em>).</li>
+                                <li>Memahami manfaat yang paling penting bagi pelanggan (<em>needs segmentation</em>).</li>
+                                <li>Menentukan segmen komunikasi berdasarkan sikap konsumen terhadap kategori (<em>customer segmentation</em>).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="layanan" class="py-20 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Layanan Riset Komprehensif</h2>
+                    <div class="w-24 h-1 bg-agro mx-auto rounded-full mb-4"></div>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Solusi data tailored untuk mendukung keputusan strategis perusahaan Anda dalam lanskap agrokimia yang dinamis.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service 1: The 360° Approach -->
+                    <div class="bg-gray-50 rounded-2xl p-8 hover-lift border border-gray-100 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-agro-light rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-agro text-2xl mb-6">
+                            <i class="fas fa-sync animate-[spin_30s_linear_infinite]"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The 360° Approach</h3>
+                        <p class="text-gray-600 mb-4">Proses peninjauan holistik yang mengevaluasi performa kampanye merek Anda melalui 7 area pengukuran utama untuk memaksimalkan efektivitas di setiap siklus.</p>
+                        <button onclick="openModal360()" class="text-agro font-medium hover:text-agro-dark inline-flex items-center gap-1 group/link focus:outline-none">
+                            Pelajari Lebih Lanjut <i class="fas fa-chevron-right text-xs transition-transform group-hover/link:translate-x-1"></i>
+                        </button>
+                    </div>
+
+                    <!-- Service 2: Key Buying Factor (KBF) Study -->
+                    <div class="bg-gray-50 rounded-2xl p-8 hover-lift border border-gray-100 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-agro-light rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-agro text-2xl mb-6">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Key Buying Factor Study</h3>
+                        <p class="text-gray-600 mb-4">Mengidentifikasi fitur dan alasan utama yang memengaruhi keputusan pembelian petani melalui teknik <em>laddering</em> untuk merancang <em>positioning</em> dan strategi merek.</p>
+                        <button onclick="openModalKBF()" class="text-agro font-medium hover:text-agro-dark inline-flex items-center gap-1 group/link focus:outline-none">
+                            Pelajari Lebih Lanjut <i class="fas fa-chevron-right text-xs transition-transform group-hover/link:translate-x-1"></i>
+                        </button>
+                    </div>
+
+                    <!-- Service 3: Competitive Intelligence -->
+                    <div class="bg-gray-50 rounded-2xl p-8 hover-lift border border-gray-100 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-agro-light rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+                        <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-agro text-2xl mb-6">
+                            <i class="fas fa-search-dollar"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Competitive Intelligence</h3>
+                        <p class="text-gray-600 mb-4">Pemetaan sentimen pasar secara faktual, pelacakan fluktuasi harga global/lokal, dan analisis berita pertanian untuk menyusun taktik penjualan cepat.</p>
+                        <button onclick="openIntelModal()" class="text-indigo-600 font-bold hover:text-indigo-800 inline-flex items-center gap-2 group/link focus:outline-none mt-2 px-4 py-2 border-2 border-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors">
+                            <i class="fas fa-satellite-dish"></i> Buka Intelligence Brief <i class="fas fa-external-link-alt text-xs transition-transform group-hover/link:translate-x-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal 360° Approach -->
+        <div id="modal-360" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-gray-900/70 backdrop-blur-sm" onclick="closeModal360()"></div>
+            
+            <!-- Modal Content -->
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col relative z-10 transform scale-95 transition-transform duration-300 border-t-8 border-agro">
+                <!-- Header -->
+                <div class="px-8 py-6 border-b border-gray-100 flex justify-between items-center bg-agro-light/30 rounded-t-2xl">
+                    <div>
+                        <h2 class="text-xs text-agro-dark font-bold uppercase tracking-widest mb-1">Framework Analisis Kampanye</h2>
+                        <h3 class="text-2xl font-bold text-agro-dark">The 360° Approach Review</h3>
+                    </div>
+                    <button onclick="closeModal360()" class="text-gray-400 hover:text-red-500 bg-white p-2 rounded-full shadow-sm hover:shadow transition-all focus:outline-none">
+                        <i class="fas fa-times text-xl w-6 h-6 flex items-center justify-center"></i>
+                    </button>
+                </div>
+                
+                <!-- Body -->
+                <div class="px-8 py-6 overflow-y-auto flex-grow custom-scroll" id="modal-360-content">
+                    <!-- Intro & 5 Steps -->
+                    <div class="flex flex-col lg:flex-row gap-10 mb-12">
+                        <div class="lg:w-1/2">
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Proses holistik yang dirancang untuk meninjau dan merencanakan kampanye secara komprehensif. Menggunakan kerangka kerja yang mencakup <strong class="text-agro-dark">7 area pengukuran utama</strong> untuk mengevaluasi performa terhadap target.
+                            </p>
+                            <div class="bg-agro/10 border border-agro/20 p-5 rounded-xl">
+                                <h4 class="text-sm font-bold text-agro-dark uppercase tracking-widest mb-4">The 5-Step Cycle</h4>
+                                <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                                    <li class="flex items-start gap-3"><span class="text-agro font-bold">01</span> Set campaign teams <span class="text-gray-400 font-normal italic">(Pre-campaign)</span></li>
+                                    <li class="flex items-start gap-3"><span class="text-agro font-bold">02</span> Set 360 objectives <span class="text-gray-400 font-normal italic">(Pre-campaign)</span></li>
+                                    <li class="flex items-start gap-3"><span class="text-agro font-bold">03</span> Execute data collection via primary research</li>
+                                    <li class="flex items-start gap-3"><span class="text-agro font-bold">04</span> Review performance vs. targets</li>
+                                    <li class="flex items-start gap-3"><span class="text-agro font-bold">05</span> Plan next campaign</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-1/2 flex justify-center items-center">
+                            <div class="w-48 h-48 border-4 border-agro rounded-full flex flex-col items-center justify-center bg-agro-light/50 shadow-inner relative neon-circle">
+                                <div class="absolute inset-2 border-2 border-dashed border-agro/50 rounded-full animate-[spin_20s_linear_infinite] neon-dashed"></div>
+                                <div class="text-center z-10">
+                                    <span class="block text-4xl font-black text-agro-dark mb-1">360&deg;</span>
+                                    <span class="block text-xs uppercase tracking-widest text-agro font-bold">Evaluation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7 Measurement Areas Dashboard -->
+                    <div class="border-t border-gray-200 pt-10">
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold text-gray-900">7 Key Measurement Areas</h4>
+                            <p class="text-gray-500 text-sm">Klik pada setiap area di bawah ini untuk melihat metrik pengukurannya secara interaktif.</p>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-8 min-h-[340px]">
+                            <!-- Left: Navigation/List -->
+                            <div class="w-full md:w-5/12 flex flex-col gap-2" id="area-nav-360">
+                                <!-- Populated dynamically by JavaScript -->
+                            </div>
+
+                            <!-- Right: Content Display -->
+                            <div class="w-full md:w-7/12 flex flex-col justify-center bg-agro/5 p-8 rounded-xl border border-agro/10">
+                                <div id="area-content-360" class="transition-opacity duration-300">
+                                    <h3 class="text-2xl font-bold text-agro-dark mb-6" id="area-title-360">Sales Performance</h3>
+                                    
+                                    <div class="mb-8">
+                                        <h4 class="text-xs uppercase tracking-widest text-agro font-bold mb-2 border-b border-agro/20 pb-2">Primary Inquiry</h4>
+                                        <p class="text-lg text-gray-700 font-medium leading-snug" id="area-question-360">What is my sales performance versus budget?</p>
+                                    </div>
+
+                                    <div>
+                                        <h4 class="text-xs uppercase tracking-widest text-agro font-bold mb-2 border-b border-agro/20 pb-2">Key Metrics Evaluated</h4>
+                                        <p class="text-base text-gray-800" id="area-measure-360">Sales by region, growth vs. PY & BUD, PAT</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Key Buying Factor (KBF) -->
+        <div id="modal-kbf" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-gray-900/70 backdrop-blur-sm" onclick="closeModalKBF()"></div>
+            
+            <!-- Modal Content -->
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col relative z-10 transform scale-95 transition-transform duration-300 border-t-8 border-agro">
+                <!-- Header -->
+                <div class="px-8 py-6 border-b border-gray-100 flex justify-between items-center bg-agro-light/30 rounded-t-2xl">
+                    <div>
+                        <h2 class="text-xs text-agro-dark font-bold uppercase tracking-widest mb-1">Metodologi Riset</h2>
+                        <h3 class="text-2xl font-bold text-agro-dark">Key Buying Factors (KBF) Study</h3>
+                    </div>
+                    <button onclick="closeModalKBF()" class="text-gray-400 hover:text-red-500 bg-white p-2 rounded-full shadow-sm hover:shadow transition-all focus:outline-none">
+                        <i class="fas fa-times text-xl w-6 h-6 flex items-center justify-center"></i>
+                    </button>
+                </div>
+                
+                <!-- Body -->
+                <div class="px-8 py-6 overflow-y-auto flex-grow custom-scroll" id="modal-kbf-content">
+                    
+                    <!-- Intro Section -->
+                    <div class="flex flex-col lg:flex-row gap-8 mb-10">
+                        <div class="lg:w-7/12">
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                <strong>Key Buying Factors (KBFs)</strong> adalah isu, alasan, atau fitur terpenting yang memengaruhi keputusan pembelian pelanggan pada segmen pasar tertentu.
+                            </p>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                KBF memiliki manfaat bisnis yang signifikan; memungkinkan tim pemasaran untuk <strong class="text-agro-dark">menyempurnakan strategi dan positioning, meningkatkan analisis kompetitor</strong>, serta merancang program pemasaran yang tepat sasaran. Ini memastikan penawaran produk sesuai dengan kebutuhan pelanggan sekaligus menonjolkan faktor diferensiasi utama.
+                            </p>
+                            
+                            <!-- Flowchart Diagram Visual -->
+                            <div class="bg-gray-50 border border-gray-200 p-5 rounded-xl">
+                                <h4 class="text-sm font-bold text-agro-dark text-center mb-4">KBF Central Role Ecosystem</h4>
+                                <div class="flex justify-center flex-wrap gap-2 text-xs font-semibold">
+                                    <div class="bg-white border border-gray-200 px-3 py-2 rounded shadow-sm text-gray-600">Market Analysis</div>
+                                    <div class="bg-white border border-gray-200 px-3 py-2 rounded shadow-sm text-gray-600">Competitor Analysis</div>
+                                    <div class="bg-white border border-gray-200 px-3 py-2 rounded shadow-sm text-gray-600">Segmentation</div>
+                                </div>
+                                <div class="flex justify-center my-3 text-agro"><i class="fas fa-long-arrow-alt-down text-xl"></i></div>
+                                <div class="flex justify-center">
+                                    <!-- Modified Box Color -->
+                                    <div class="bg-agro-accent text-gray-900 px-6 py-3 rounded-lg font-bold border border-yellow-400 neon-box">Key Buying Factors</div>
+                                </div>
+                                <div class="flex justify-center my-3 text-agro gap-12">
+                                    <i class="fas fa-long-arrow-alt-down text-xl transform -rotate-45"></i>
+                                    <i class="fas fa-long-arrow-alt-down text-xl"></i>
+                                    <i class="fas fa-long-arrow-alt-down text-xl transform rotate-45"></i>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 text-center text-xs font-semibold">
+                                    <div>
+                                        <div class="bg-white border border-gray-200 p-2 rounded shadow-sm mb-1 text-gray-600">Branding Model</div>
+                                        <div class="bg-agro-light text-agro-dark p-2 rounded border border-agro/30">Positioning</div>
+                                    </div>
+                                    <div>
+                                        <div class="bg-white border border-gray-200 p-2 rounded shadow-sm mb-1 text-gray-600">Equity Monitoring</div>
+                                        <div class="bg-agro-light text-agro-dark p-2 rounded border border-agro/30">Value Pricing</div>
+                                    </div>
+                                    <div>
+                                        <div class="bg-white border border-gray-200 p-2 rounded shadow-sm mb-1 text-gray-600">Communications</div>
+                                        <div class="bg-agro-light text-agro-dark p-2 rounded border border-agro/30">Strategies</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2 Phases Methodology -->
+                        <div class="lg:w-5/12 flex flex-col gap-4">
+                            <h4 class="text-lg font-bold text-gray-900 mb-2 border-b border-gray-200 pb-2">The Two-Phase Approach</h4>
+                            
+                            <div class="bg-white border-l-4 border-agro p-4 shadow-sm rounded-r-lg">
+                                <h5 class="font-bold text-agro-dark flex items-center gap-2 mb-2">
+                                    <span class="bg-agro text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                    Phase I: Generating BFs (Exploratory)
+                                </h5>
+                                <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4 marker:text-agro">
+                                    <li>Mengungkap sebanyak mungkin potensi faktor pembelian.</li>
+                                    <li>Pendekatan kualitatif, tidak berupaya mengkuantifikasi.</li>
+                                    <li>Menggunakan <strong class="text-gray-800">Laddering Technique</strong> tanpa memicu bias.</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white border-l-4 border-agro-dark p-4 shadow-sm rounded-r-lg">
+                                <h5 class="font-bold text-agro-dark flex items-center gap-2 mb-2">
+                                    <span class="bg-agro-dark text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                    Phase II: Prioritization (Quantitative)
+                                </h5>
+                                <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4 marker:text-agro-dark">
+                                    <li>Memvalidasi faktor pembelian yang diperoleh dari fase kualitatif.</li>
+                                    <li>Menentukan tingkat kepuasan pasar untuk setiap faktor.</li>
+                                    <li>Mengidentifikasi atribut yang berujung pada <em>differentiation</em>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brand Drivers (Laddering) Visual -->
+                    <div class="border-t border-gray-200 pt-8 mt-4">
+                        <div class="mb-6 text-center">
+                            <h4 class="text-xl font-bold text-gray-900">Brand Drivers (KBF): What is really important for the grower?</h4>
+                            <p class="text-gray-500 text-sm">Visualisasi teknik <em>Laddering</em>: menerjemahkan fitur produk menjadi manfaat emosional dan bisnis.</p>
+                        </div>
+
+                        <!-- Laddering Diagram -->
+                        <div class="flex flex-col md:flex-row gap-6 items-stretch justify-center max-w-4xl mx-auto">
+                            
+                            <!-- Left: The Ladder Levels -->
+                            <div class="flex flex-col-reverse justify-between gap-3 w-full md:w-1/3">
+                                <div class="flex items-center gap-3 group">
+                                    <div class="w-8 h-8 rounded-full border-2 border-agro text-agro font-bold flex items-center justify-center shrink-0 group-hover:bg-agro group-hover:text-white transition-colors">1</div>
+                                    <div class="bg-gray-100 p-3 rounded shadow-sm text-sm font-semibold text-gray-700 w-full border-l-4 border-gray-300">What it is</div>
+                                </div>
+                                <div class="flex items-center gap-3 group">
+                                    <div class="w-8 h-8 rounded-full border-2 border-agro text-agro font-bold flex items-center justify-center shrink-0 group-hover:bg-agro group-hover:text-white transition-colors">2</div>
+                                    <div class="bg-gray-100 p-3 rounded shadow-sm text-sm font-semibold text-gray-700 w-full border-l-4 border-agro/40">What it does when used</div>
+                                </div>
+                                <div class="flex items-center gap-3 group">
+                                    <div class="w-8 h-8 rounded-full border-2 border-agro text-agro font-bold flex items-center justify-center shrink-0 group-hover:bg-agro group-hover:text-white transition-colors">3</div>
+                                    <div class="bg-gray-100 p-3 rounded shadow-sm text-sm font-semibold text-gray-700 w-full border-l-4 border-agro/70">What it does to growing the crop</div>
+                                </div>
+                                <div class="flex items-center gap-3 group">
+                                    <div class="w-8 h-8 rounded-full border-2 border-agro text-agro font-bold flex items-center justify-center shrink-0 group-hover:bg-agro group-hover:text-white transition-colors">4</div>
+                                    <div class="bg-gray-100 p-3 rounded shadow-sm text-sm font-semibold text-gray-700 w-full border-l-4 border-agro">What it does to the farm</div>
+                                </div>
+                                <div class="flex items-center gap-3 group">
+                                    <div class="w-8 h-8 rounded-full border-2 border-agro-dark text-agro-dark font-bold flex items-center justify-center shrink-0 group-hover:bg-agro-dark group-hover:text-white transition-colors">5</div>
+                                    <div class="bg-gray-100 p-3 rounded shadow-sm text-sm font-semibold text-gray-700 w-full border-l-4 border-agro-dark">What it does to the farmer</div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Examples (Product & Relationship) -->
+                            <div class="flex flex-col-reverse justify-between gap-3 w-full md:w-2/3 bg-agro-light/20 p-4 rounded-xl border border-agro/20">
+                                <!-- Level 1 Examples -->
+                                <div class="flex gap-2 text-xs font-medium text-center">
+                                    <div class="flex-1 bg-white p-2 rounded shadow-sm border border-gray-100 text-gray-500">Selective Herbicides<br>(Product)</div>
+                                    <div class="flex-1 bg-white p-2 rounded shadow-sm border border-gray-100 text-gray-500">F2F Intimate Relationship<br>(Relationship)</div>
+                                </div>
+                                <!-- Level 2 Examples -->
+                                <div class="flex gap-2 text-xs font-medium text-center">
+                                    <div class="flex-1 bg-white p-2 rounded shadow-sm border border-gray-100 text-gray-600">Broad spectrum, Fast acting</div>
+                                    <div class="flex-1 bg-white p-2 rounded shadow-sm border border-gray-100 text-gray-600">Demos, Quick response to calls</div>
+                                </div>
+                                <!-- Level 3 Examples -->
+                                <div class="flex gap-2 text-xs font-medium text-center">
+                                    <div class="flex-1 bg-agro/10 p-2 rounded shadow-sm border border-agro/20 text-agro-dark">Higher Yield</div>
+                                    <div class="flex-1 bg-agro/10 p-2 rounded shadow-sm border border-agro/20 text-agro-dark">Better Quality</div>
+                                    <div class="flex-1 bg-agro/10 p-2 rounded shadow-sm border border-agro/20 text-agro-dark">Higher Efficiency</div>
+                                </div>
+                                <!-- Level 4 Examples -->
+                                <div class="flex gap-2 text-xs font-bold text-center">
+                                    <div class="flex-1 bg-agro text-white p-2 rounded shadow-md">Profit</div>
+                                    <div class="flex-1 bg-agro text-white p-2 rounded shadow-md">Sustainability</div>
+                                    <div class="flex-1 bg-agro text-white p-2 rounded shadow-md">Growth</div>
+                                </div>
+                                <!-- Level 5 Examples -->
+                                <div class="flex gap-2 text-xs font-bold text-center justify-center">
+                                    <div class="w-1/2 bg-agro-dark text-white p-2 rounded shadow-md">Quality of Life</div>
+                                    <div class="w-1/2 bg-agro-dark text-white p-2 rounded shadow-md">Clear Future</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Implication Box -->
+                        <div class="mt-8 bg-blue-50 border border-blue-100 p-5 rounded-xl flex items-start gap-4">
+                            <i class="fas fa-lightbulb text-blue-500 text-2xl mt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-blue-900 mb-1">Insights & Implication</h5>
+                                <p class="text-sm text-blue-800 leading-relaxed">
+                                    Melalui latihan <em>Laddering KBF</em> ini, kami mampu menangkap atribut pembeda yang paling penting. Atribut yang penting, membedakan, dan beresonansi kuat ini kemudian diadaptasi ke dalam pemodelan merek <em>(brand modeling)</em> yang diperlukan untuk mendesain <strong>Value Proposition</strong> merek secara akurat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Insights Section -->
+        <section id="insight" class="py-20 bg-white border-t border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-end mb-12">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Insights & Publikasi Terbaru</h2>
+                        <div class="w-24 h-1 bg-agro rounded-full"></div>
+                    </div>
+                    <a href="#" class="hidden md:inline-flex items-center gap-2 text-agro font-medium hover:text-agro-dark">
+                        Lihat Semua <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover-lift flex flex-col h-full">
+                        <div class="p-8 flex flex-col flex-grow">
+                            <div class="flex items-center gap-3 text-sm text-gray-500 mb-4">
+                                <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-md text-xs font-semibold">Strategi Merek</span>
+                                <span class="flex items-center gap-1"><i class="far fa-calendar-alt"></i> 30 Mar 2026</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4 hover:text-agro transition-colors cursor-pointer leading-snug">Ketika Peta Nilai Bicara, Manajer Merek Harus Mendengar</h3>
+                            <p class="text-gray-600 mb-6 flex-grow line-clamp-3 leading-relaxed">Pelanggan tidak menilai produk dari spesifikasi teknis. Mereka menilainya dari pengalaman — manfaat fungsional, kemudahan proses, dan kualitas hubungan.</p>
+                            <a href="https://www.linkedin.com/pulse/ketika-peta-nilai-bicara-manajer-merek-harus-alexander-wijayanto-wrmec/" target="_blank" rel="noopener" class="text-gray-800 font-medium hover:text-agro inline-flex items-center gap-2 mb-6 transition-colors">Baca di LinkedIn <i class="fas fa-external-link-alt text-xs"></i></a>
+                            
+                            <!-- Ringkasan Artikel -->
+                            <div class="mt-auto border-t border-gray-100 pt-4">
+                                <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="text-xs font-bold text-amber-700 hover:text-amber-900 uppercase tracking-wider flex items-center gap-2 mb-2 focus:outline-none transition-colors">
+                                    <i class="fas fa-chevron-down"></i> Ringkasan Lengkap
+                                </button>
+                                <div class="hidden text-xs text-gray-600 space-y-3 bg-gray-50 p-4 rounded-xl mt-3">
+                                    <p class="font-medium text-gray-800"><strong>Inti Pesan:</strong> Pelanggan menilai dari <em>pengalaman</em>, bukan spesifikasi teknis. Tiga dimensi persepsi nilai:</p>
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li><strong>Manfaat Fungsional:</strong> Apa yang produk lakukan untuk hasil panen (efikasi, persistensi).</li>
+                                        <li><strong>Kemudahan Proses:</strong> Label jelas, dosis sederhana, ketersediaan dekat.</li>
+                                        <li><strong>Kualitas Hubungan:</strong> Apakah petani merasa didengar dan dihargai.</li>
+                                    </ul>
+                                    <p class="font-medium text-gray-800 mt-2"><strong>Kasus Banzoot (Value-Disadvantaged):</strong> Skor 6.160, harga 33.300 vs nilai wajar 30.512. Customer surplus <span class="text-red-600 font-bold">-2.788</span> — pelanggan merasa membayar terlalu mahal. <strong>Aksi:</strong> pangkas harga atau perkuat komunikasi manfaat yang paling dirasakan.</p>
+                                    <p class="font-medium text-gray-800"><strong>Kasus Apacz (Value-Advantaged):</strong> Skor 7.250, harga 33.000. Customer surplus <span class="text-emerald-600 font-bold">+2.911</span> — "sedekah nilai" terlalu besar. Zone of indifference 6.1%. <strong>Aksi:</strong> naikkan harga bertahap tanpa kehilangan pelanggan.</p>
+                                    <p class="text-gray-500 italic mt-2">Customer Value Map bukan dokumen sekali pakai — perlu validasi rutin tiap tahun via survei petani, distributor, dan retail.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover-lift flex flex-col h-full">
+                        <div class="p-8 flex flex-col flex-grow">
+                            <div class="flex items-center gap-3 text-sm text-gray-500 mb-4">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-md text-xs font-semibold">Value Pricing</span>
+                                <span class="flex items-center gap-1"><i class="far fa-calendar-alt"></i> 23 Apr 2026</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4 hover:text-agro transition-colors cursor-pointer leading-snug">Meneropong Jebakan Harga: Pendekatan Berbasis Data dalam Value Pricing</h3>
+                            <p class="text-gray-600 mb-6 flex-grow line-clamp-3 leading-relaxed">Customer Value Map, Profit Parabola, dan Conjoint Fair Value Simulator — mengubah penetapan harga dari tebakan insting jadi strategi presisi berbasis data.</p>
+                            <a href="https://www.linkedin.com/pulse/meneropong-jebakan-harga-pendekatan-berbasis-data-dalam-wijayanto-urrsc/" target="_blank" rel="noopener" class="text-gray-800 font-medium hover:text-agro inline-flex items-center gap-2 mb-6 transition-colors">Baca di LinkedIn <i class="fas fa-external-link-alt text-xs"></i></a>
+                            
+                            <!-- Ringkasan Artikel -->
+                            <div class="mt-auto border-t border-gray-100 pt-4">
+                                <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="text-xs font-bold text-red-700 hover:text-red-900 uppercase tracking-wider flex items-center gap-2 mb-2 focus:outline-none transition-colors">
+                                    <i class="fas fa-chevron-down"></i> Ringkasan Lengkap
+                                </button>
+                                <div class="hidden text-xs text-gray-600 space-y-3 bg-gray-50 p-4 rounded-xl mt-3">
+                                    <p class="font-medium text-gray-800"><strong>Inti Pesan:</strong> Kompetisi berbasis <em>nilai ekonomi</em>, bukan sekadar fitur. Pelanggan membayar untuk <strong>dampak ekonomi</strong> terhadap bisnisnya.</p>
+                                    <p class="font-medium text-gray-800"><strong>Ilusi Performa vs. Fair Value:</strong></p>
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li><span class="text-red-600 font-bold">Citadelle, Opus Pro, Opera</span> — performa tinggi tapi <strong>overpriced</strong> (di atas Fair Value Line). Surplus negatif = pelanggan merasa kemahalan.</li>
+                                        <li><span class="text-emerald-600 font-bold">Opus Top, Ogam</span> — surplus positif, <strong>underpriced</strong>. Perusahaan meninggalkan potensi profit.</li>
+                                    </ul>
+                                    <p class="font-medium text-gray-800 mt-2"><strong>3 Tahap Value Pricing:</strong></p>
+                                    <ol class="list-decimal pl-4 space-y-1">
+                                        <li><strong>Monetizing Value:</strong> Terjemahkan perbedaan performa jadi nilai Rupiah nyata. Misal: +0.18 Duration = +Rp 2.445 WTP.</li>
+                                        <li><strong>Profit Parabola:</strong> Cari puncak kurva Expected Profit vs Price. Citadelle: Rp 400.000 → optimal Rp 389.692 = Expected Profit Rp 70.2 rb.</li>
+                                        <li><strong>Simulasi Dinamis:</strong> Gunakan Conjoint Fair Value Simulator untuk menguji skenario perubahan preferensi pasar.</li>
+                                    </ol>
+                                    <p class="text-red-700 font-medium mt-2"><strong>Peringatan:</strong> Tanpa presisi Value Pricing, perusahaan jadi target empuk kompetitor yang lebih lincah. Menetapkan harga dari biaya produksi atau insting adalah resep kehilangan relevansi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover-lift flex flex-col h-full">
+                        <div class="p-8 flex flex-col flex-grow">
+                            <div class="flex items-center gap-3 text-sm text-gray-500 mb-4">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-md text-xs font-semibold">Neuromarketing</span>
+                                <span class="flex items-center gap-1"><i class="far fa-calendar-alt"></i> 03 Feb 2025</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4 hover:text-agro transition-colors cursor-pointer leading-snug">The Challenge of Messaging in a World of Distractions</h3>
+                            <p class="text-gray-600 mb-6 flex-grow line-clamp-3 leading-relaxed">Otak manusia terima 11 juta bit/detik, tapi kesadaran hanya proses 50 bit. NEUROMAP framework: bagaimana memicu respons primal brain untuk pesan yang tidak diabaikan.</p>
+                            <a href="https://www.linkedin.com/pulse/challenge-messaging-world-distractions-alexander-wijayanto-fh4qc/" target="_blank" rel="noopener" class="text-gray-800 font-medium hover:text-agro inline-flex items-center gap-2 mb-6 transition-colors">Baca di LinkedIn <i class="fas fa-external-link-alt text-xs"></i></a>
+                            
+                            <!-- Ringkasan Artikel -->
+                            <div class="mt-auto border-t border-gray-100 pt-4">
+                                <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="text-xs font-bold text-purple-700 hover:text-purple-900 uppercase tracking-wider flex items-center gap-2 mb-2 focus:outline-none transition-colors">
+                                    <i class="fas fa-chevron-down"></i> Ringkasan Lengkap
+                                </button>
+                                <div class="hidden text-xs text-gray-600 space-y-3 bg-gray-50 p-4 rounded-xl mt-3">
+                                    <p class="font-medium text-gray-800"><strong>Inti Pesan:</strong> Otak manusia terima <em>11 juta bit/detik</em>, tapi kesadaran hanya proses <strong>50 bit</strong>. Sebagian besar pesan diabaikan. Pesan harus memicu <strong>primal brain</strong> — bagian otak tertua yang fokus pada survival dan reaksi cepat terhadap ancaman/peluang.</p>
+                                    <p class="font-medium text-gray-800 mt-2"><strong>6 Alasan Pesan Gagal (berdasarkan The Persuasion Code):</strong></p>
+                                    <ol class="list-decimal pl-4 space-y-1">
+                                        <li><strong>Mengabaikan Primal Brain:</strong> Pesan fokus pada solusi, bukan <em>pain point</em> pelanggan. Otak primal hanya respon pada pesan yang mendesak dan relevan.</li>
+                                        <li><strong>Terlalu Banyak Informasi:</strong> Otak primal tidak bisa proses kompleksitas tinggi. Terlalu banyak pilihan = brain freeze.</li>
+                                        <li><strong>Tidak Ada Koneksi Emosional:</strong> Keputusan manusia didorong emosi. Tanpa emosi, tidak ada quick decision-making.</li>
+                                        <li><strong>Tidak Ada Kontras Jelas:</strong> Otak primal butuh perbandingan before/after atau competitor vs. your product untuk mempercepat keputusan.</li>
+                                        <li><strong>Sulit Diingat:</strong> Pesan tanpa struktur jelas mudah dilupakan. Butuh opening kuat dan ending memorable.</li>
+                                        <li><strong>Mengandalkan Feedback Subjektif:</strong> Survei dan riset tradisional sering tidak akurat karena otak proses informasi lebih cepat dari kesadaran.</li>
+                                    </ol>
+                                    <p class="font-medium text-gray-800 mt-2"><strong>Evaluasi Iklan Incipio (Syngenta) via NEUROMAP Framework:</strong></p>
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li><span class="text-emerald-600 font-bold">Kekuatan:</span> Visual petani santai = langsung komunikasikan benefit. Pesan singkat dan jelas. Mudah dipahami tanpa baca banyak.</li>
+                                        <li><span class="text-red-600 font-bold">Kelemahan:</span> Tidak ada urgensi/consequences jika tidak pakai. Tidak ada CTA jelas. Kurang before-and-after comparison.</li>
+                                    </ul>
+                                    <p class="text-gray-500 italic mt-2">Rekomendasi perbaikan iklan: tambahkan urgensi (“Tanpa Incipio, panen Anda berisiko diserang hama kapan saja”), CTA jelas (“Dapatkan sekarang di kios pertanian terdekat!”), dan visual perbandingan padi sehat vs. terserang.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="mt-12 text-center md:hidden">
+                     <a href="#" class="inline-flex items-center gap-2 text-agro font-medium hover:text-agro-dark bg-agro-light px-6 py-3 rounded-full transition-colors">
+                        Lihat Semua Publikasi
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact / CTA Section -->
+        <section id="kontak" class="py-20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-agro-dark z-0"></div>
+            <!-- Decorative pattern -->
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+                    
+                    <!-- Contact Info -->
+                    <div class="lg:w-2/5 bg-agro p-10 text-white flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-white opacity-10 rounded-full"></div>
+                        <div class="absolute top-12 -right-12 w-32 h-32 bg-white opacity-10 rounded-full"></div>
+                        
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-2">Diskusikan Kebutuhan Riset Anda</h3>
+                            <p class="text-agro-light mb-8">Tim analis kami siap merancang metodologi riset yang tepat untuk menjawab tantangan bisnis Anda.</p>
+                            
+                            <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg">Kantor Pusat</h4>
+                                    <p class="text-sm text-agro-light">Legenda Wisata<br>Zona Marcopolo A2 No. 9<br>Nagrak, Gunung Putri, Jawa Barat</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-lg">Email</h4>
+                                        <p class="text-sm text-agro-light">alexander.wijayanto@genesis-research.co</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-lg">Telepon</h4>
+                                        <p class="text-sm text-agro-light">+628176628484</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:w-3/5 p-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Kirimkan Pesan</h3>
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap *</label>
+                                    <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-agro focus:border-agro transition-colors outline-none" placeholder="Budi Santoso">
+                                </div>
+                                <div>
+                                    <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Perusahaan *</label>
+                                    <input type="text" id="company" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-agro focus:border-agro transition-colors outline-none" placeholder="PT Agro Makmur">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Bisnis *</label>
+                                    <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-agro focus:border-agro transition-colors outline-none" placeholder="budi@agromakmur.com">
+                                </div>
+                                <div>
+                                    <label for="interest" class="block text-sm font-medium text-gray-700 mb-2">Kategori Riset</label>
+                                    <select id="interest" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-agro focus:border-agro transition-colors outline-none bg-white">
+                                        <option>The 360° Approach</option>
+                                        <option>Key Buying Factors</option>
+                                        <option>Competitive Analysis</option>
+                                        <option>Lainnya</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Pesan / Kebutuhan Spesifik</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-agro focus:border-agro transition-colors outline-none resize-none" placeholder="Ceritakan singkat tujuan riset Anda..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-agro-dark text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-900 transition-colors shadow-md">
+                                Kirim Permintaan <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                        
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="successMessage" class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 flex items-center gap-3">
+                            <i class="fas fa-check-circle text-xl"></i>
+                            <p>Terima kasih! Pesan Anda telah kami terima. Tim kami akan segera menghubungi Anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                    <div class="col-span-1 md:col-span-1">
+                        <a href="#" class="flex items-center gap-3 mb-4 group" onclick="window.scrollTo(0,0); return false;">
+                            <img src="White on Transparent.png" alt="Genesis Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://placehold.co/200x80/111827/4caf50?text=Genesis+Logo'">
+                            <span class="font-bold text-xl text-white">Genesis Research</span>
+                        </a>
+                        <p class="text-sm mb-4">Bagian dari <strong class="text-white">Genesis Research</strong> — mitra intelijen pasar terpercaya untuk industri agrokimia di Indonesia. Mengubah data menjadi keunggulan kompetitif.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Layanan</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="hover:text-agro transition-colors">The 360° Approach</a></li>
+                            <li><a href="#" class="hover:text-agro transition-colors">Key Buying Factors</a></li>
+                            <li><a href="#" class="hover:text-agro transition-colors">Competitor Tracking</a></li>
+                            <li><a href="#" class="hover:text-agro transition-colors">Custom Research</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Industri</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="hover:text-agro transition-colors">Pupuk (Fertilizers)</a></li>
+                            <li><a href="#" class="hover:text-agro transition-colors">Pestisida (Crop Protection)</a></li>
+                            <li><a href="#" class="hover:text-agro transition-colors">Benih (Seeds)</a></li>
+                            <li><a href="#" class="hover:text-agro transition-colors">Bio-stimulant</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="hover:text-agro transition-colors">Kebijakan Privasi</a></li>
+                            <li><a href="#" class="hover:text-agro transition-colors">Syarat & Ketentuan</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                    <p>&copy; 2026 Genesis Research Insights. All rights reserved.</p>
+                    <p class="mt-2 md:mt-0">Didesain untuk Industri Pertanian Modern</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Akhir dari Container Utama Website -->
+
+    <!-- ======================================================================= -->
+    <!-- FULL SCREEN MODAL: AGRI INTELLIGENCE BRIEF                              -->
+    <!-- ======================================================================= -->
+    <!-- Modal ini sengaja dibuat full-screen dan memiliki container dengan       -->
+    <!-- kelas neo-brutalism untuk memisahkannya dari desain website utama.     -->
+    <div id="intel-brief-modal" class="fixed inset-0 z-[200] hidden bg-zinc-100 overflow-y-auto">
+        <!-- Tombol Tutup (Mengambang) -->
+        <button id="close-intel-modal" onclick="closeIntelModal()" class="fixed top-6 right-6 z-[300] w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg border-2 border-zinc-950 transition-transform transform hover:scale-110 no-print" title="Tutup Intelligence Brief">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+
+        <!-- KONTEN AGRI-INTELLIGENCE BRIEF (Menggunakan kelas Neo-Brutalism) -->
+        <div class="min-h-screen pb-16 pattern-bg font-sans text-zinc-900 transition-colors">
+            
+            <!-- Global Integrity Warning -->
+            <div class="bg-indigo-600 text-white font-mono font-black text-[10px] md:text-xs py-2 px-4 text-center tracking-widest border-b-3 border-zinc-950 z-50 relative uppercase shadow-sm">
+                <span class="flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 animate-pulse-fast"><use href="#icon-activity"></use></svg>
+                    MODE INTELIJEN FAKTUAL: DUAL-SPIKE TERDETEKSI (ANCAMAN EL NINO VS FOOD ESTATE, POMPANISASI, B50 & HARGA KOMODITAS) PER 11 JULI 2026.
+                </span>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 md:px-8 mt-6">
+                <header id="app-header" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none neo-shadow-lg relative overflow-hidden">
+                    <div class="h-2 w-full bg-emerald-500 border-b-2 border-zinc-950 absolute top-0 left-0"></div>
+
+                    <div class="p-6 md:p-10 relative z-10 pt-10">
+                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+                            <div class="space-y-4">
+                                <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 px-3 py-1 font-extrabold uppercase text-[10px] tracking-widest border-2 border-emerald-500">
+                                    <svg class="w-4 h-4"><use href="#icon-sprout"></use></svg>
+                                    <span>SISTEM INTELIJEN PASAR & STRATEGI PEMASARAN</span>
+                                </div>
+                                <h1 class="text-4xl md:text-6xl font-display font-black uppercase tracking-tight text-zinc-950 dark:text-white leading-none">AGRI-INTELLIGENCE BRIEF</h1>
+                                <p class="text-zinc-600 dark:text-zinc-400 text-sm md:text-base max-w-3xl font-medium leading-relaxed">
+                                    Pusat analisis ketidakseimbangan pasar terpadu: memantau harga agrokimia, tren biostimulant, dan mengekstrak peluang strategis pemasaran berbasis data aktual per <strong class="text-zinc-950 dark:text-white">11 Juli 2026</strong> — mencakup dual-spike mingguan tervalidasi 2026.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-2 no-print shrink-0 mt-2 lg:mt-0">
+                                <button id="theme-toggle" aria-label="Ganti Tema Mode Gelap/Terang" class="w-12 h-12 bg-zinc-50 dark:bg-zinc-800 text-zinc-950 dark:text-white border-2 border-zinc-950 neo-shadow neo-interactive neo-btn transition-all flex items-center justify-center cursor-pointer" title="Ganti Tema">
+                                    <svg id="theme-icon-light" class="w-5 h-5"><use href="#icon-moon"></use></svg>
+                                    <svg id="theme-icon-dark" class="w-5 h-5 text-amber-400 hidden"><use href="#icon-sun"></use></svg>
+                                </button>
+                                <button id="print-document-btn" class="w-12 h-12 bg-zinc-50 dark:bg-zinc-800 text-zinc-950 dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700 border-2 border-zinc-950 neo-shadow neo-interactive neo-btn transition-all flex items-center justify-center cursor-pointer" title="Cetak Laporan">
+                                    <svg class="w-5 h-5"><use href="#icon-printer"></use></svg>
+                                </button>
+                                <button id="export-pdf-btn" class="h-12 bg-zinc-950 text-white hover:bg-zinc-800 border-2 border-zinc-950 px-4 neo-shadow neo-interactive neo-btn transition-all flex items-center justify-center gap-2 cursor-pointer font-black text-[10px] uppercase tracking-widest" title="Unduh sebagai PDF">
+                                    <svg class="w-4.5 h-4.5 text-emerald-400"><use href="#icon-download"></use></svg>
+                                    <span class="hidden sm:inline">PDF</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 pt-6 border-t-2 border-zinc-200 dark:border-zinc-800">
+                            <div class="flex flex-col">
+                                <span class="text-zinc-500 dark:text-zinc-400 text-[10px] font-black tracking-widest mb-1.5 font-mono uppercase">Tanggal Audit</span>
+                                <span class="font-display font-black text-sm md:text-lg text-zinc-950 dark:text-white">Sabtu, 11 Juli 2026</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-zinc-500 dark:text-zinc-400 text-[10px] font-black tracking-widest mb-1.5 font-mono uppercase">Status Mode</span>
+                                <span id="active-scenario-display" class="font-display font-black text-sm md:text-lg bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-400 px-2.5 py-0.5 border-2 border-indigo-500 inline-block w-fit">DATA FAKTUAL — DUAL-SPIKE 6–11 JULI</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-zinc-500 dark:text-zinc-400 text-[10px] font-black tracking-widest mb-1.5 font-mono uppercase">Waktu Sinkronisasi</span>
+                                <span class="font-mono text-sm md:text-lg font-black text-zinc-950 dark:text-white flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-emerald-500 animate-pulse"><use href="#icon-activity"></use></svg>
+                                    <span id="live-clock">--:--:-- WIB</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+            <nav id="sticky-tabs-nav" class="sticky top-0 z-40 bg-zinc-100/90 dark:bg-zinc-950/90 backdrop-blur-md border-b-2 border-zinc-300 dark:border-zinc-800 px-4 py-4 no-print mt-6 transition-colors duration-300">
+                <div class="max-w-7xl mx-auto flex gap-3 overflow-x-auto scrolling-touch pb-2 md:pb-0 scrollbar-hide">
+                    <a href="#exec-summary" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-zinc-950 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-950 neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-layers"></use></svg> Executive Summary
+                    </a>
+                    <a href="#spike-positif" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-teal-500 hover:text-white neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-trending-up"></use></svg> Spike Positif
+                    </a>
+                    <a href="#dashboard" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-emerald-500 hover:text-zinc-950 neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-layout-grid"></use></svg> Dasbor Komoditas
+                    </a>
+                    <a href="#pestisida-china" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-teal-500 hover:text-white neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-flask-conical"></use></svg> Monitor Agrokimia
+                    </a>
+                    <a href="#biostimulant" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-fuchsia-500 hover:text-white neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-sparkles"></use></svg> Data Biostimulant
+                    </a>
+                    <a href="#climate" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-red-500 hover:text-white neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-activity"></use></svg> Iklim
+                    </a>
+                    <a href="#scenario-analysis" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-indigo-500 hover:text-white neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-bar-chart-2"></use></svg> Market Drivers
+                    </a>
+                    <a href="#berita" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-blue-500 hover:text-white neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-globe"></use></svg> Umpan Berita Riil
+                    </a>
+                    <a href="#analisis" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-amber-400 hover:text-zinc-950 neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-file-check"></use></svg> Verifikasi Faktual
+                    </a>
+                    <a href="#sources" class="px-4 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-white neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0">
+                        <svg class="w-4 h-4"><use href="#icon-newspaper"></use></svg> Sumber Referensi
+                    </a>
+                </div>
+            </nav>
+
+            <main class="max-w-7xl mx-auto px-4 md:px-8 mt-10 space-y-16">
+
+                <!-- EXECUTIVE SUMMARY -->
+                <section id="exec-summary" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-8 relative transition-colors neo-shadow-lg">
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white px-5 py-2 border-l-3 border-b-3 border-zinc-950 font-black text-[10px] tracking-widest uppercase">DUAL-SPIKE 6–11 JULI 2026</div>
+                    <div class="border-b-2 border-zinc-200 dark:border-zinc-800 pb-5 mb-8">
+                        <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                            <svg class="w-7 h-7 text-indigo-600"><use href="#icon-layers"></use></svg> Executive Summary (11 Juli 2026)
+                        </h2>
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold mt-2 uppercase tracking-wider">Sintesis dinamika pasar: Momentum emas peningkatan daya beli petani (B50 & harga tinggi) di tengah ancaman multi-krisis El Nino dan hama.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-zinc-50 dark:bg-zinc-950 border-2 border-zinc-950 p-6 rounded-none neo-shadow neo-interactive flex flex-col justify-between">
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3 text-emerald-600">
+                                    <svg class="w-6 h-6 shrink-0"><use href="#icon-trending-up"></use></svg>
+                                    <h4 class="font-display font-black uppercase text-zinc-950 dark:text-white text-lg leading-tight">Momentum Ekonomi B50 & NTPP</h4>
+                                </div>
+                                <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">Pemerintah terus dorong food estate, pompanisasi, dan subsidi benih/pupuk. B50 resmi berlaku 1 Juli mendukung TBS sawit. GKP nasional stabil Rp 6.500–7.200/kg (di atas HPP), jagung naik ke Rp 8.250/kg, sebaliknya bawang merah dan cabai rawit mengalami koreksi. <strong class="text-emerald-600 dark:text-emerald-400">Fokus ke swasembada pangan dan perkebunan berlanjut.</strong></p>
+                            </div>
+                        </div>
+                        <div class="bg-zinc-50 dark:bg-zinc-950 border-2 border-zinc-950 p-6 rounded-none neo-shadow neo-interactive flex flex-col justify-between">
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3 text-red-600">
+                                    <svg class="w-6 h-6 shrink-0"><use href="#icon-shield-alert"></use></svg>
+                                    <h4 class="font-display font-black uppercase text-zinc-950 dark:text-white text-lg leading-tight">Ancaman El Nino & Hama Darurat</h4>
+                                </div>
+                                <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">BMKG/WMO memperingatkan El Nino kuat (>2°C). <strong>Serangan wereng coklat dan tikus meluas di Jawa, Sumatera, dan Kalimantan.</strong> Padi di Natar terancam puso; Sleman & Kulon Progo siaga WBC. <strong class="text-red-600 dark:text-red-400">Ancaman gagal panen memicu kebutuhan pestisida dan irigasi darurat.</strong></p>
+                            </div>
+                        </div>
+                        <div class="bg-zinc-50 dark:bg-zinc-950 border-2 border-zinc-950 p-6 rounded-none neo-shadow neo-interactive flex flex-col justify-between">
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3 text-blue-500">
+                                    <svg class="w-6 h-6 shrink-0"><use href="#icon-file-check"></use></svg>
+                                    <h4 class="font-display font-black uppercase text-zinc-950 dark:text-white text-lg leading-tight">Rekor Stok CBP & Produktivitas</h4>
+                                </div>
+                                <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">Program food estate dan pompanisasi terus diperluas (>50.000 unit pompa, target lahan >100.000 ha di Kalteng). Sistem PM-AAS hasilkan produktivitas padi hingga <strong>12,4 ton/ha</strong>. Stok Bulog masih tinggi. <strong class="text-blue-600 dark:text-blue-400">Ketahanan pangan makro didukung program infrastruktur irigasi.</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SPIKE MINGGUAN — UPDATED SECTION -->
+                <section id="spike-positif" class="space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-3 border-zinc-950 dark:border-zinc-800 pb-4">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                                <svg class="w-7 h-7 text-indigo-500"><use href="#icon-newspaper"></use></svg> Sorotan Faktual: Dual-Spike (6–11 Jul)
+                            </h2>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold uppercase tracking-wider mt-2">Daftar berita pendorong pasar: 10 sorotan utama positif dan ancaman kritis yang berjalan beriringan.</p>
+                        </div>
+                        <div class="text-[10px] bg-indigo-600 text-white py-2 px-4 border-2 border-zinc-950 font-black tracking-widest uppercase neo-shadow shrink-0 flex items-center gap-2">
+                            <svg class="w-4 h-4 animate-pulse"><use href="#icon-zap"></use></svg> DUAL-SPIKE TERVALIDASI
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Card 1: B50 (Pos) -->
+                        <a href="https://www.antaranews.com/" target="_blank" rel="noopener noreferrer" class="block bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">🚀</span>
+                                <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase">Mandatori B50 Resmi Berlaku 1 Juli</h3>
+                            </div>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">Indonesia jadi negara pertama terapkan biodiesel 50%. Pertamina siapkan 29 terminal BBM. Prabowo targetkan swasembada energi. Harga TBS sawit di Riau meroket ke Rp3.707/kg mengiringi kebijakan ini.</p>
+                            <div class="mt-3 flex flex-wrap gap-2 text-[10px] font-mono font-bold text-zinc-500">
+                                <span class="bg-emerald-100 text-emerald-800 px-1">POSITIF</span><span>•</span><span>ANTARA News</span>
+                            </div>
+                        </a>
+
+                        <!-- Card 2: WMO El Nino (Neg) -->
+                        <a href="https://www.antaranews.com/" target="_blank" rel="noopener noreferrer" class="block bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">🔥</span>
+                                <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase">WMO: Transisi Cepat El Nino "Godzilla"</h3>
+                            </div>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">WMO (3 Juli) mengonfirmasi transisi cepat menuju El Nino kuat. Suhu permukaan laut Pasifik diprediksi naik >2°C. BNPB mulai distribusikan air darurat di Jawa dan Gunungkidul tetapkan Siaga Kekeringan.</p>
+                            <div class="mt-3 flex flex-wrap gap-2 text-[10px] font-mono font-bold text-zinc-500">
+                                <span class="bg-red-100 text-red-800 px-1">NEGATIF</span><span>•</span><span>WMO</span>
+                            </div>
+                        </a>
+
+                        <!-- Card 3: Rekor Bulog (Pos) -->
+                        <a href="https://www.tempo.co/" target="_blank" rel="noopener noreferrer" class="block bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">📦</span>
+                                <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase">Stok CBP Bulog 5,17 Juta Ton (Tertinggi Sejarah)</h3>
+                            </div>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">Kapasitas gudang penuh, Bulog simpan 2,2 juta ton di gudang sewa. Bapanas nyatakan surplus Jan-Jun capai 3,79 juta ton. Inflasi beras terkendali di 0,45% mtm, bukan lagi penyumbang inflasi utama.</p>
+                            <div class="mt-3 flex flex-wrap gap-2 text-[10px] font-mono font-bold text-zinc-500">
+                                <span class="bg-emerald-100 text-emerald-800 px-1">POSITIF</span><span>•</span><span>Bapanas</span>
+                            </div>
+                        </a>
+
+                        <!-- Card 4: Hama Tikus Malang (Neg) -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="block bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">🐀</span>
+                                <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase">DPRD Malang Desak Anggaran Darurat Hama Tikus</h3>
+                            </div>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium"><strong>BREAKING (4 Juli):</strong> Hama tikus menyerang puluhan hektare lahan di Kabupaten Malang. DPRD mendesak TAPD segera cairkan dana darurat. Bersamaan dengan Sleman & Kulon Progo yang siaga Wereng (WBC).</p>
+                            <div class="mt-3 flex flex-wrap gap-2 text-[10px] font-mono font-bold text-zinc-500">
+                                <span class="bg-red-100 text-red-800 px-1">NEGATIF</span><span>•</span><span>DPRD Malang</span>
+                            </div>
+                        </a>
+
+                        <!-- Card 5: NTPP Tertinggi (Pos) -->
+                        <a href="https://www.bps.go.id/" target="_blank" rel="noopener noreferrer" class="block bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">💰</span>
+                                <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase">NTPP 114,65 — Harga GKP Tembus Rp6.989/kg</h3>
+                            </div>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">Nilai Tukar Petani Pertanian (NTPP) Juni tertinggi sejak Maret 2024. Indeks harga padi 149,65 (tertinggi 7 tahun). Harga GKP di lapangan mencapai Rp7.000–Rp7.300/kg, jauh di atas HPP. Daya beli melesat.</p>
+                            <div class="mt-3 flex flex-wrap gap-2 text-[10px] font-mono font-bold text-zinc-500">
+                                <span class="bg-emerald-100 text-emerald-800 px-1">POSITIF</span><span>•</span><span>BPS</span>
+                            </div>
+                        </a>
+
+                        <!-- Card 6: Ancaman Puso (Neg) -->
+                        <a href="https://kompas.com/" target="_blank" rel="noopener noreferrer" class="block bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">🥀</span>
+                                <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase">Puso Mengintai: Natar & Karawang Kering</h3>
+                            </div>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">Padi usia 25 hari di Natar, Lampung mulai menguning terancam puso (gagal panen). Di Karawang, 59 desa alami kekeringan sawah imbas rusaknya irigasi. Dam Klanceng Jember juga dilaporkan rusak parah.</p>
+                            <div class="mt-3 flex flex-wrap gap-2 text-[10px] font-mono font-bold text-zinc-500">
+                                <span class="bg-red-100 text-red-800 px-1">NEGATIF</span><span>•</span><span>Kompas.com</span>
+                            </div>
+                        </a>
+
+                        <!-- Card 7: PM-AAS (Pos) -->
+                        <a href="https://www.liputan6.com/" target="_blank" rel="noopener noreferrer" class="block bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">🌱</span>
+                                <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase">Sistem PM-AAS: Produktivitas Padi 12,4 Ton/Ha</h3>
+                            </div>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">Sistem precision agriculture (PM-AAS) tingkatkan populasi dari 300 ribu menjadi 1 juta rumpun/ha. Produktivitas meroket dari 5 ton menjadi 12,4 ton/ha. Diapresiasi Presiden di PENAS XVII.</p>
+                            <div class="mt-3 flex flex-wrap gap-2 text-[10px] font-mono font-bold text-zinc-500">
+                                <span class="bg-emerald-100 text-emerald-800 px-1">POSITIF</span><span>•</span><span>Kementan</span>
+                            </div>
+                        </a>
+
+                        <!-- Card 8: Agrokimia China (Pos/Neg) -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="block bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-2xl">⚠️</span>
+                                <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase">Ledakan Youdao Picu Krisis K-amine (CTPR)</h3>
+                            </div>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">Gelombang paten produk andalan sedang berakhir, namun ledakan pabrik memicu kelangkaan intermediate K-amine di China. Harga CTPR technical melonjak drastis ke RMB 320.000/ton, menjadi sentimen bullish mendadak bagi produk setara.</p>
+                            <div class="mt-3 flex flex-wrap gap-2 text-[10px] font-mono font-bold text-zinc-500">
+                                <span class="bg-amber-100 text-amber-800 px-1">ALERT</span><span>•</span><span>AgroPages</span>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- DASBOR KOMODITAS -->
+                <section id="dashboard" class="space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-3 border-zinc-950 dark:border-zinc-800 pb-4">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                                <svg class="w-7 h-7 text-emerald-500"><use href="#icon-layout-grid"></use></svg> Dasbor Komoditas Faktual
+                            </h2>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold uppercase tracking-wider mt-2">Data makro tervalidasi per 11 Juli 2026 untuk mengarahkan prioritas penjualan.</p>
+                        </div>
+                    </div>
+                    <div id="dashboard-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                </section>
+
+                <!-- MONITOR AGROKIMIA CHINA -->
+                <section id="pestisida-china" class="space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-3 border-zinc-950 dark:border-zinc-800 pb-4">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                                <svg class="w-7 h-7 text-teal-500"><use href="#icon-flask-conical"></use></svg> Monitor Indeks Agrokimia China
+                            </h2>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold uppercase tracking-wider mt-2">Data Deep-Dive v8 (Bahan Aktif FOB). Kurs: 1 USD = 7.02 CNY.</p>
+                        </div>
+                        <div class="text-[10px] bg-teal-500 text-white py-2 px-4 border-2 border-zinc-950 font-black tracking-widest uppercase neo-shadow shrink-0 flex items-center gap-2">
+                            <svg class="w-4 h-4 animate-pulse"><use href="#icon-zap"></use></svg> SINKRONISASI API
+                        </div>
+                    </div>
+
+                    <div id="api-loading-overlay" role="status" aria-live="polite" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 p-12 flex flex-col items-center justify-center neo-shadow-lg">
+                        <svg class="w-12 h-12 text-teal-500 animate-spin-slow mb-4" aria-hidden="true"><use href="#icon-refresh-cw"></use></svg>
+                        <h3 class="font-display font-black uppercase text-lg tracking-widest text-zinc-950 dark:text-white mb-2">MENGHUBUNGI API (DEEP-DIVE RUN #7)...</h3>
+                        <p class="text-xs font-mono text-zinc-500 mb-4">Mengekstrak harga FOB riil terbaru (Kurs 1 USD = 7.02 RMB)</p>
+                        <div class="w-64 h-1.5 bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full bg-teal-500 w-1/3 animate-loading-bar"></div></div>
+                    </div>
+
+                    <div id="pesticide-content-container" class="space-y-8 hidden">
+                        <div id="pesticide-tables-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                        <div id="pesticide-news-recs-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
+                    </div>
+                </section>
+
+                <!-- BIOSTIMULANT DATA -->
+                <section id="biostimulant" class="space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-3 border-zinc-950 dark:border-zinc-800 pb-4">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                                <svg class="w-7 h-7 text-fuchsia-500"><use href="#icon-sparkles"></use></svg> Data Biostimulant China 2026
+                            </h2>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold uppercase tracking-wider mt-2">Harga FOB Pelabuhan China (B2B) — <span class="text-fuchsia-500">*Estimasi Industri</span>. Kurs: 1 USD = 7.02 CNY.</p>
+                        </div>
+                    </div>
+
+                    <div id="bio-loading-overlay" role="status" aria-live="polite" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 p-12 flex flex-col items-center justify-center neo-shadow-lg">
+                        <svg class="w-12 h-12 text-fuchsia-500 animate-spin-slow mb-4" aria-hidden="true"><use href="#icon-refresh-cw"></use></svg>
+                        <div class="w-64 h-1.5 bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full bg-fuchsia-500 w-1/3 animate-loading-bar"></div></div>
+                    </div>
+
+                    <div id="biostimulant-content" class="grid grid-cols-1 lg:grid-cols-3 gap-8 hidden">
+                        <div class="bg-fuchsia-100 dark:bg-fuchsia-900/20 border-3 border-fuchsia-600 rounded-none p-6 neo-shadow lg:col-span-1">
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase mb-5 flex items-center gap-2 border-b-2 border-fuchsia-600 pb-3">
+                                <svg class="w-5 h-5 text-fuchsia-600 dark:text-fuchsia-400"><use href="#icon-layers"></use></svg> Startup Framework 2026
+                            </h3>
+                            <div class="space-y-5">
+                                <div class="bg-white dark:bg-zinc-950 border-2 border-zinc-950 p-3 text-xs leading-relaxed font-medium">
+                                    <span class="font-black block mb-2 uppercase tracking-wider border-b border-dashed border-zinc-300 dark:border-zinc-700 pb-1 text-fuchsia-700 dark:text-fuchsia-400">4 Pilar Biological (ABG):</span>
+                                    <ul class="list-disc pl-4 text-zinc-800 dark:text-zinc-200 space-y-1 mt-2">
+                                        <li><strong>Differentiation</strong> — Harus tervalidasi lapangan.</li>
+                                        <li><strong>Scalability</strong> — Kapasitas manufaktur.</li>
+                                        <li><strong>IP Ownership</strong> — Paham regulasi & paten.</li>
+                                        <li><strong>Grower ROI</strong> — Petani butuh jaminan balik modal.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none overflow-hidden neo-shadow lg:col-span-2">
+                            <div class="bg-zinc-950 text-white p-3 text-xs font-black tracking-widest uppercase flex justify-between">
+                                <span>Katalog Harga FOB China (B2B) <span class="text-zinc-400 normal-case tracking-normal ml-1">(*estimasi industri)</span></span>
+                                <span class="text-fuchsia-400">Data v16 (Kurs: 7.02)</span>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-sm font-medium">
+                                    <thead class="border-b-2 border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 font-mono text-[10px] uppercase text-zinc-500">
+                                        <tr><th class="p-4">Kategori Produk</th><th class="p-4">Rentang Harga (USD)</th><th class="p-4">Supplier Referensi</th></tr>
+                                    </thead>
+                                    <tbody id="biostimulant-table-body" class="divide-y-2 divide-zinc-100 dark:divide-zinc-800"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                
+                <!-- IKLIM & CUACA -->
+                <section id="climate" class="space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-3 border-zinc-950 dark:border-zinc-800 pb-4">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                                <svg class="w-7 h-7 text-red-500"><use href="#icon-activity"></use></svg> Iklim & Cuaca: BMKG / NOAA / WMO
+                            </h2>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold uppercase tracking-wider mt-2">Deep-dive iklim periode kemarau Juli 2026 dan implikasi untuk tanaman.</p>
+                        </div>
+                        <div class="text-[10px] bg-red-600 text-white py-2 px-4 border-2 border-zinc-950 font-black tracking-widest uppercase neo-shadow shrink-0 flex items-center gap-2">
+                            <svg class="w-4 h-4 animate-pulse"><use href="#icon-shield-alert"></use></svg> EL NINO TERDETEKSI
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive">
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase mb-4 flex items-center gap-2">
+                                <span>🇮🇩</span> Prakiraan BMKG
+                            </h3>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">BMKG: ~1/3 wilayah Indonesia sudah masuk musim kemarau El Niño per Juni 2026. Puncak kekeringan diproyeksikan Agustus–September 2026. Curah hujan Jawa: 50-100 mm/bulan (rendah). Peringatan dini: hujan sedang-lebat + petir + angin kencang di Riau, Maluku Utara, Papua. Suhu: 23-35°C. BNPB salurkan air bersih ke Gunungkidul, Semarang, Jember.</p>
+                            <div class="mt-4 text-[10px] font-mono text-zinc-500">Sumber: BMKG (Juli 2026)</div>
+                        </div>
+                        <div class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive">
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase mb-4 flex items-center gap-2">
+                                <span>🌐</span> Outlook NOAA / WMO
+                            </h3>
+                            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">NOAA CPC (9 Juli 2026): El Niño Advisory. Niño-3.4: +1,2°C. Niño-1+2: +2,7°C. Probabilitas 97% El Niño bertahan hingga awal spring 2027. Probabilitas 81% menjadi 'very strong' El Niño Okt-Des 2026 — termasuk yang terbesar sejak 1950. Next update: 13 Agustus 2026.</p>
+                            <div class="mt-4 text-[10px] font-mono text-zinc-500">Sumber: NOAA CPC / WMO (Juli 2026)</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 border-3 border-red-600 rounded-none p-6 neo-shadow">
+                        <h3 class="font-display font-black text-red-900 dark:text-red-100 text-lg uppercase mb-4 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-red-600 dark:text-red-400"><use href="#icon-shield-alert"></use></svg> Implikasi untuk Pertanian Indonesia
+                        </h3>
+                        <p class="text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">Kekeringan di Jawa, Sumatera Selatan, dan Nusa Tenggara diproyeksikan memburuk. Penurunan produksi padi dan jagung di lahan tadah hujan. Risiko karhutla meningkat. 5 bendungan baru diresmikan (Meninting, Keureuto, Rukoh, Jlantah, Sidan) → tambah produksi beras 1 juta ton. Stok beras Bulog 5,2 juta ton — aman untuk Juli-Agustus. Padi usia 25 hari menguning di Natar, Lampung. WBC di Sleman/Karawang, tikus di Malang.</p>
+                    </div>
+                </section>
+
+
+                <!-- MARKET DRIVERS & PELUANG -->
+                <section id="scenario-analysis" class="space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-3 border-zinc-950 dark:border-zinc-800 pb-4">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                                <svg class="w-7 h-7 text-indigo-500"><use href="#icon-bar-chart-2"></use></svg> Market Drivers & Taktik Penjualan
+                            </h2>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold uppercase tracking-wider mt-2">Memanfaatkan lonjakan daya beli (B50 & GKP tinggi) untuk menjual mitigasi krisis (El Nino & Hama).</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Kolom Kiri: Domestic Drivers -->
+                        <div class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow">
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg uppercase mb-5 border-b-2 border-zinc-200 dark:border-zinc-800 pb-3 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-indigo-500"><use href="#icon-trending-up"></use></svg> Analisis Penggerak Dual-Spike (Juli 2026)
+                            </h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-red-100 text-red-800 border border-red-500 text-[10px] font-black px-2 py-0.5 uppercase tracking-widest">El Nino Godzilla vs Rekor Harga</span>
+                                        <h4 class="font-bold text-sm text-zinc-900 dark:text-zinc-100">Cemas Kekeringan, Tapi Uang Tersedia</h4>
+                                    </div>
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed">
+                                        WMO konfirmasi El Nino kuat >2°C. Petani cemas puso seperti di Natar. Namun, NTPP catat rekor 114,65 & GKP tembus Rp7.200/kg. <strong>Jangan beri diskon! Tawarkan biostimulan anti-stres (Asam Amino) sebagai "Asuransi Tanaman" mandiri.</strong>
+                                    </p>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-emerald-100 text-emerald-800 border border-emerald-500 text-[10px] font-black px-2 py-0.5 uppercase tracking-widest">B50 Berlaku & TBS Sawit Naik</span>
+                                        <h4 class="font-bold text-sm text-zinc-900 dark:text-zinc-100">Durian Runtuh Pekebun Sawit</h4>
+                                    </div>
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed">
+                                        Berlakunya B50 mengerek harga TBS hingga Rp3.707/kg. Pekebun sedang mengalami euforia harga. <strong>Momen sempurna untuk menggeser pasar ke Herbisida Sistemik premium kemasan besar.</strong>
+                                    </p>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-amber-100 text-amber-800 border border-amber-500 text-[10px] font-black px-2 py-0.5 uppercase tracking-widest">Darurat Hama Masa Transisi</span>
+                                        <h4 class="font-bold text-sm text-zinc-900 dark:text-zinc-100">Kepanikan Tikus & Wereng (WBC)</h4>
+                                    </div>
+                                    <p class="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed">
+                                        Malang darurat tikus. Sleman siaga Wereng. Petani sangat butuh solusi instan. <strong>Push ketersediaan produk Rodentisida & Insektisida sistemik (bahan aktif buprofezin, pymetrozine) di kios-kios ritel segera.</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kolom Kanan: Rekomendasi + Global Context -->
+                        <div class="space-y-6">
+                            <div class="bg-indigo-50 dark:bg-indigo-900/20 border-3 border-indigo-600 rounded-none p-6 neo-shadow print-break-inside-avoid">
+                                <h3 class="font-display font-black text-indigo-950 dark:text-indigo-100 text-lg uppercase mb-5 border-b-2 border-indigo-200 dark:border-indigo-800 pb-3 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400"><use href="#icon-lightbulb"></use></svg> Rekomendasi Taktis Tim Lapangan
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="bg-white dark:bg-zinc-950 border-2 border-emerald-500 p-4">
+                                        <h4 class="font-black text-sm md:text-base text-zinc-900 dark:text-white uppercase flex items-center gap-2 mb-2">
+                                            💰 Sikat "Budget Nganggur" Subsidi
+                                        </h4>
+                                        <p class="text-xs text-zinc-700 dark:text-zinc-300 font-medium mb-3 leading-relaxed">
+                                            HET Urea & NPK turun 20%. Harga komoditas melesat. Uang petani sisa banyak. Edukasi mereka untuk menginvestasikan selisih uang tersebut ke nutrisi semprot (foliar) agar penyerapan maksimal di tanah kering.
+                                        </p>
+                                    </div>
+                                    <div class="bg-white dark:bg-zinc-950 border-2 border-red-500 p-4">
+                                        <h4 class="font-black text-sm md:text-base text-zinc-900 dark:text-white uppercase flex items-center gap-2 mb-2">
+                                            🚨 Manfaatkan Kepanikan Hama
+                                        </h4>
+                                        <p class="text-xs text-zinc-700 dark:text-zinc-300 font-medium mb-3 leading-relaxed">
+                                            Saat berita tikus (Malang) dan wereng (Sleman) menyebar, petani cenderung <i>panic buying</i> obat-obatan. Buat paket "Perlindungan Gadu" (Fungisida+Insektisida) dan distribusikan brosurnya.
+                                        </p>
+                                    </div>
+                                    <div class="bg-white dark:bg-zinc-950 border-2 border-blue-500 p-4">
+                                        <h4 class="font-black text-sm md:text-base text-zinc-900 dark:text-white uppercase flex items-center gap-2 mb-2">
+                                            🤝 Jual Narasi 12,4 Ton (PM-AAS)
+                                        </h4>
+                                        <p class="text-xs text-zinc-700 dark:text-zinc-300 font-medium mb-3 leading-relaxed">
+                                            Sistem pertanian PM-AAS terbukti lipatgandakan hasil. Tawarkan program kawalan teknis agronomi kita yang menyerupai SOP PM-AAS, janjikan peningkatan tonase nyata.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-zinc-50 dark:bg-zinc-900 border-2 border-zinc-300 dark:border-zinc-700 rounded-none p-5 neo-shadow">
+                                <h4 class="font-display font-black text-zinc-700 dark:text-zinc-400 text-xs uppercase mb-3 flex items-center gap-2 tracking-widest">
+                                    <svg class="w-4 h-4"><use href="#icon-globe"></use></svg> Konteks Harga China (Supporting Data)
+                                </h4>
+                                <p class="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium mb-3">
+                                    Kurs USD/CNY naik ke <strong>7.02</strong>. Penghapusan <i>tax rebate</i> ekspor memicu <i>rush export</i> Glifosat. 🚨 Peringatan: Krisis K-amine pasca ledakan pabrik (Youdao) memicu lonjakan ekstrem harga CTPR technical! Siapkan strategi pengadaan segera.
+                                </p>
+                                <p class="text-[9px] text-zinc-400 mt-2 italic">Sumber: CCPIA CAPI, Status Update 08 Jul 2026</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DUAL SPIKE IMPACT TRACKER -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                        <div class="bg-emerald-50 dark:bg-emerald-900/20 border-3 border-emerald-600 rounded-none p-5 neo-shadow">
+                            <h4 class="font-display font-black text-emerald-900 dark:text-emerald-100 text-sm uppercase mb-3 flex items-center gap-2">
+                                <span>💰</span> Daya Beli & CPO (Positif)
+                            </h4>
+                            <div class="space-y-2 text-xs font-medium text-zinc-800 dark:text-zinc-200">
+                                <div class="flex justify-between"><span>NTPP (Rekor)</span><strong class="text-emerald-600">114,65</strong></div>
+                                <div class="flex justify-between"><span>B50 Nasional</span><strong>Resmi Berlaku</strong></div>
+                                <div class="flex justify-between"><span>Harga TBS Riau</span><strong class="text-emerald-600">Rp 3.707/kg</strong></div>
+                                <div class="flex justify-between"><span>Harga GKP Petani</span><strong class="text-emerald-600">Rp 7.200/kg</strong></div>
+                            </div>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 border-3 border-red-600 rounded-none p-5 neo-shadow">
+                            <h4 class="font-display font-black text-red-900 dark:text-red-100 text-sm uppercase mb-3 flex items-center gap-2">
+                                <span>🔥</span> Ancaman Fisik (Negatif)
+                            </h4>
+                            <div class="space-y-2 text-xs font-medium text-zinc-800 dark:text-zinc-200">
+                                <div class="flex justify-between"><span>El Nino (WMO)</span><strong class="text-red-600">Kuat (>2°C)</strong></div>
+                                <div class="flex justify-between"><span>Status Gunungkidul</span><strong>Siaga Kekeringan</strong></div>
+                                <div class="flex justify-between"><span>Hama (Malang)</span><strong class="text-red-600">Darurat Tikus</strong></div>
+                                <div class="flex justify-between"><span>Ancaman Puso</span><strong>Natar & Karawang</strong></div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 border-3 border-blue-600 rounded-none p-5 neo-shadow">
+                            <h4 class="font-display font-black text-blue-900 dark:text-blue-100 text-sm uppercase mb-3 flex items-center gap-2">
+                                <span>🌾</span> Fundamental Pangan
+                            </h4>
+                            <div class="space-y-2 text-xs font-medium text-zinc-800 dark:text-zinc-200">
+                                <div class="flex justify-between"><span>Stok Bulog</span><strong class="text-blue-600">Rekor 5,17 Juta Ton</strong></div>
+                                <div class="flex justify-between"><span>Produksi Padi (FAO)</span><strong>38 Juta Ton</strong></div>
+                                <div class="flex justify-between"><span>PM-AAS Mentan</span><strong class="text-emerald-600">12,4 Ton/Ha</strong></div>
+                                <div class="flex justify-between"><span>Cabai Rawit</span><strong class="text-red-600">Turun 31%</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- UMPAN BERITA -->
+                <section id="berita" class="space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-3 border-zinc-950 dark:border-zinc-800 pb-4">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                                <svg class="w-7 h-7 text-blue-500"><use href="#icon-globe"></use></svg> Umpan Berita Global & Regional
+                            </h2>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold uppercase tracking-wider mt-2">Daftar berita pertanian terkini — spike positif 20–27 Juni 2026. 25+ berita utama dari 32 sumber.</p>
+                        </div>
+                    </div>
+
+                    <div id="news-loading-overlay" role="status" aria-live="polite" class="py-16 flex flex-col items-center justify-center bg-zinc-100 dark:bg-zinc-900 border-2 border-dashed border-zinc-300 dark:border-zinc-700">
+                        <svg class="w-10 h-10 text-blue-500 animate-spin-slow mb-4" aria-hidden="true"><use href="#icon-refresh-cw"></use></svg>
+                        <h3 class="font-display font-black uppercase text-sm tracking-widest text-zinc-950 dark:text-white mb-4">MENGAMBIL DATA BERITA TERKINI...</h3>
+                        <div class="w-48 h-1.5 bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full bg-blue-500 w-1/3 animate-loading-bar"></div></div>
+                    </div>
+
+                    <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-8 items-stretch hidden"></div>
+
+                    <div id="load-more-news-container" class="text-center mt-8 hidden no-print">
+                        <button id="load-more-news-btn" class="bg-zinc-50 dark:bg-zinc-800 text-zinc-950 dark:text-white border-2 border-zinc-950 py-3 px-8 text-xs font-black uppercase tracking-widest neo-shadow neo-interactive transition-all inline-flex items-center gap-2">
+                            <svg class="w-4 h-4"><use href="#icon-refresh-cw"></use></svg> Muat Lebih Banyak
+                        </button>
+                    </div>
+                </section>
+
+                <!-- VERIFIKASI FAKTUAL -->
+                <section id="analisis" class="space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-3 border-zinc-950 dark:border-zinc-800 pb-4">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                                <svg class="w-7 h-7 text-amber-500"><use href="#icon-file-check"></use></svg> Matriks Audit Faktual (Positif)
+                            </h2>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold uppercase tracking-wider mt-2">Klaim terverifikasi dari 32 sumber — digunakan sebagai bahan edukasi pelanggan per 11 Juli 2026.</p>
+                        </div>
+                        <div class="flex items-center gap-3 w-full md:w-auto shrink-0 no-print">
+                            <div class="relative w-full md:w-80">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 shrink-0">
+                                    <svg class="w-5 h-5"><use href="#icon-search"></use></svg>
+                                </span>
+                                <input id="search-filter-input" type="text" placeholder="Filter referensi..." class="w-full pl-12 pr-4 py-3 border-3 border-zinc-950 bg-white dark:bg-zinc-950 text-zinc-950 dark:text-white text-sm font-black uppercase tracking-wider focus:outline-none neo-shadow neo-interactive transition-colors" />
+                            </div>
+                            <button id="export-csv-btn" class="bg-amber-400 text-zinc-950 hover:bg-amber-500 border-3 border-zinc-950 py-3 px-4 font-black text-xs uppercase tracking-widest neo-shadow neo-interactive transition-all flex items-center gap-2 shrink-0" title="Ekspor Data ke CSV">
+                                <svg class="w-5 h-5"><use href="#icon-layers"></use></svg> <span class="hidden md:inline">CSV</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-zinc-950 border-3 border-zinc-950 rounded-none overflow-hidden transition-colors neo-shadow-lg">
+                        <div class="overflow-x-auto scrollbar-hide">
+                            <table class="w-full text-left border-collapse whitespace-normal min-w-full">
+                                <thead>
+                                    <tr class="bg-zinc-950 text-white text-[11px] tracking-widest uppercase font-mono font-black border-b-2 border-zinc-950">
+                                        <th class="py-4 px-6 w-1/3">Informasi Terverifikasi & Sumber</th>
+                                        <th class="py-4 px-6 w-1/6">Status Validasi</th>
+                                        <th class="py-4 px-6 w-1/2">Pesan Untuk Strategi Sales</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="verification-table-body" class="text-sm divide-y-2 divide-zinc-200 dark:divide-zinc-800 font-medium bg-white dark:bg-zinc-900"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SUMBER REFERENSI -->
+                <section id="sources" class="space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-3 border-zinc-950 dark:border-zinc-800 pb-4">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-display font-black text-zinc-950 dark:text-white uppercase tracking-tight flex items-center gap-3">
+                                <svg class="w-7 h-7 text-zinc-600 dark:text-zinc-400"><use href="#icon-newspaper"></use></svg> Sumber Referensi Utama
+                            </h2>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400 font-mono font-bold uppercase tracking-wider mt-2">Daftar pustaka dan tautan eksternal yang mendukung seluruh klaim dalam laporan.</p>
+                        </div>
+                        <div class="text-[10px] bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 py-2 px-4 border-2 border-zinc-950 font-black tracking-widest uppercase neo-shadow shrink-0 flex items-center gap-2">
+                            <svg class="w-4 h-4"><use href="#icon-file-check"></use></svg> 10 DOKUMEN TAUTAN
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Source New: FAO -->
+                        <a href="https://www.cnnindonesia.com/ekonomi/20260622144141-92-1371841/fao-produksi-beras-ri-naik-saat-produksi-dunia-turun-di-2026" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive block group hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-emerald-100 text-emerald-800 border border-emerald-500 text-[10px] font-black px-2 py-0.5 uppercase tracking-widest">CNN INDONESIA</span>
+                                <span class="text-[11px] font-mono font-bold text-zinc-500">22 Jun 2026</span>
+                            </div>
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-base mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">FAO: Produksi Beras RI Naik, Saat Produksi Dunia Turun di 2026</h3>
+                            <p class="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed mb-4">Laporan FAO Food Outlook Juni 2026 memproyeksikan produksi beras Indonesia mencapai 38,6 juta ton, produsen keempat dunia.</p>
+                            <div class="pt-3 border-t-2 border-dashed border-zinc-300 dark:border-zinc-700 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 truncate break-all flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 shrink-0"><use href="#icon-globe"></use></svg> https://www.cnnindonesia.com/...
+                            </div>
+                        </a>
+
+                        <!-- Source 1: BMKG El Nino -->
+                        <a href="https://mediaindonesia.com/humaniora/905441/bmkg-el-nino-kuat-mengancam-pangan-energi-dan-kesehatan" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive block group hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-red-100 text-red-800 border border-red-500 text-[10px] font-black px-2 py-0.5 uppercase tracking-widest">MEDIA INDONESIA</span>
+                                <span class="text-[11px] font-mono font-bold text-zinc-500">29 Jun 2026</span>
+                            </div>
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-base mb-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">BMKG: El Nino Kuat Mengancam Pangan, Energi, dan Kesehatan</h3>
+                            <p class="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed mb-4">Peluang El Nino capai 98% (kategori kuat). Risiko kekeringan, puso lahan, hingga lonjakan karhutla dan ISPA perkotaan.</p>
+                            <div class="pt-3 border-t-2 border-dashed border-zinc-300 dark:border-zinc-700 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 truncate break-all flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 shrink-0"><use href="#icon-globe"></use></svg> https://mediaindonesia.com/...
+                            </div>
+                        </a>
+
+                        <!-- Source 2: Bapanas -->
+                        <a href="https://www.tempo.co/ekonomi/badan-pangan-el-nino-belum-berpengaruh-besar-ke-pertanian-2271957" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive block group hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-blue-100 text-blue-800 border border-blue-500 text-[10px] font-black px-2 py-0.5 uppercase tracking-widest">TEMPO</span>
+                                <span class="text-[11px] font-mono font-bold text-zinc-500">27 Jun 2026</span>
+                            </div>
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-base mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Badan Pangan: El Nino Belum Berpengaruh Besar ke Pertanian</h3>
+                            <p class="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed mb-4">Neraca beras surplus 3,7 juta ton (Jan-Jun 2026). Cadangan pemerintah di Bulog mencapai 3,2 juta ton.</p>
+                            <div class="pt-3 border-t-2 border-dashed border-zinc-300 dark:border-zinc-700 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 truncate break-all flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 shrink-0"><use href="#icon-globe"></use></svg> https://www.tempo.co/...
+                            </div>
+                        </a>
+
+                        <!-- Source 3: Aceh Kekeringan -->
+                        <a href="https://regional.kompas.com/read/2026/06/08/082513178/600-hektare-sawah-di-aceh-kekeringan-petani-terancam-gagal-panen-hingga" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive block group hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-orange-100 text-orange-800 border border-orange-500 text-[10px] font-black px-2 py-0.5 uppercase tracking-widest">KOMPAS</span>
+                                <span class="text-[11px] font-mono font-bold text-zinc-500">08 Jun 2026</span>
+                            </div>
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-base mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">600 Hektare Sawah di Aceh Kekeringan, Petani Terancam Gagal Panen</h3>
+                            <p class="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed mb-4">Dampak El Nino melanda Nagan Raya dan Simeulue. Lahan tadah hujan mengering dan masa tanam tertunda.</p>
+                            <div class="pt-3 border-t-2 border-dashed border-zinc-300 dark:border-zinc-700 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 truncate break-all flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 shrink-0"><use href="#icon-globe"></use></svg> https://regional.kompas.com/...
+                            </div>
+                        </a>
+
+                        <!-- Source 4: Sleman Wereng -->
+                        <a href="https://www.merdeka.com/uang/dp3-sleman-perkuat-antisipasi-serangan-wereng-dan-dampak-musim-kemarau-panjang-2026-586903-mvk.html" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive block group hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-emerald-100 text-emerald-800 border border-emerald-500 text-[10px] font-black px-2 py-0.5 uppercase tracking-widest">MERDEKA</span>
+                                <span class="text-[11px] font-mono font-bold text-zinc-500">28 Jun 2026</span>
+                            </div>
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-base mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">DP3 Sleman Perkuat Antisipasi Serangan Wereng dan Dampak Musim Kemarau Panjang</h3>
+                            <p class="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed mb-4">Pengawasan ketat hama WBC melalui POPT dan penyuluh. Rekomendasi tanam varietas genjah tahan kekeringan.</p>
+                            <div class="pt-3 border-t-2 border-dashed border-zinc-300 dark:border-zinc-700 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 truncate break-all flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 shrink-0"><use href="#icon-globe"></use></svg> https://www.merdeka.com/...
+                            </div>
+                        </a>
+
+                        <!-- Source 5: Food Insecurity -->
+                        <a href="https://www.thejakartapost.com/business/2026/06/23/heeding-the-signal-indonesias-rising-food-insecurity" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-6 neo-shadow neo-interactive block group hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-colors">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-indigo-100 text-indigo-800 border border-indigo-500 text-[10px] font-black px-2 py-0.5 uppercase tracking-widest">THE JAKARTA POST</span>
+                                <span class="text-[11px] font-mono font-bold text-zinc-500">23 Jun 2026</span>
+                            </div>
+                            <h3 class="font-display font-black text-zinc-950 dark:text-white text-base mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Heeding the signal: Indonesia's rising food insecurity</h3>
+                            <p class="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed mb-4">Kerawanan pangan naik ke 10,4% di tengah inflasi pangan volatil 6,2%. Evaluasi penajaman program Makan Bergizi (MBG).</p>
+                            <div class="pt-3 border-t-2 border-dashed border-zinc-300 dark:border-zinc-700 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 truncate break-all flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 shrink-0"><use href="#icon-globe"></use></svg> https://www.thejakartapost.com/...
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="max-w-7xl mx-auto px-4 md:px-8 mt-24 mb-12 no-print">
+                <div class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none p-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left transition-colors neo-shadow">
+                    <div>
+                        <p class="font-display font-black uppercase text-base text-zinc-950 dark:text-white flex items-center justify-center md:justify-start gap-2 leading-none">
+                            <span>🌾</span> Agri-Intelligence Brief: Sales Enablement
+                        </p>
+                        <p class="text-xs text-zinc-500 dark:text-zinc-400 font-medium mt-2 max-w-2xl">
+                            Data pasar ditarik menggunakan Deep-Drive Cron v16 (11 Juli 2026). Mencakup sorotan mingguan tervalidasi mengenai intervensi El Nino dan produksi pangan dari ragam sumber media terkemuka.
+                        </p>
+                    </div>
+                    <div class="text-xs text-zinc-500 dark:text-zinc-400 md:text-right font-bold">
+                        <p class="uppercase tracking-widest text-[10px] text-zinc-400 mb-1 font-mono">KONTAK ADMINISTRATOR:</p>
+                        <a href="#" class="text-emerald-600 dark:text-emerald-400 font-black hover:underline tracking-tight text-sm">agri-data@genesis-research.co</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Akhir Modal Intelligence Brief -->
+
+    <script>
+        // === SCRIPT UTAMA WEBSITE GENESIS ===
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('bg-white/90', 'bg-white');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('bg-white', 'bg-white/90');
+            }
+        });
+
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+
+        // Form Submit Simulation
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const successMsg = document.getElementById('successMessage');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                form.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                successMsg.classList.remove('hidden');
+                setTimeout(() => { successMsg.classList.add('hidden'); }, 5000);
+            }, 1500);
+        }
+
+        // --- 360 Approach Modal Interaction Logic ---
+        const modal360 = document.getElementById('modal-360');
+        const modal360Content = document.getElementById('modal-360-content');
+        const areasData360 = [
+            { title: "Sales Performance", question: "What is my sales performance versus budget?", measure: "Sales by region, growth vs. PY & BUD, PAT" },
+            { title: "Brand Performance", question: "How is my brand performing at each stage of the brand funnel?", measure: "Brand funnel: awareness, trial, repeat, loyalty, NPS score, key reasons for usage/non usage" },
+            { title: "Value Performance", question: "How do growers perceive price versus performance?", measure: "Value map: performance index, perceived price index, actual price" },
+            { title: "A&P Effectiveness", question: "How did my key message reach my grower target?", measure: "Spend and reach by activity (cost per grower reached), brand slogan recall, most activating A&P" },
+            { title: "Sales Force Effectiveness", question: "How effective were the sales force & promoters in selling?", measure: "Perceived product uniqueness, brand message recall, sales tool effectiveness, most effective sales activity" },
+            { title: "Channel Support", question: "How well did the channel support the product?", measure: "NPS score, perceived product uniqueness, brand message recall, sales tools/service effectiveness, retail coverage, sell in vs. out" },
+            { title: "Competitor & Market", question: "Have competition or other market factors impacted success, how did they react?", measure: "Competition, crop price, weather, pests, government policy" }
+        ];
+
+        function build360Navigation() {
+            const navContainer = document.getElementById('area-nav-360');
+            if (!navContainer) return;
+            navContainer.innerHTML = '';
+            areasData360.forEach((area, index) => {
+                const button = document.createElement('button');
+                button.className = `area-btn-360 text-left px-5 py-3 border-l-4 font-medium text-sm transition-all focus:outline-none ${
+                    index === 0 
+                    ? 'border-agro bg-agro/10 text-agro-dark font-bold' 
+                    : 'border-transparent text-gray-500 hover:text-agro-dark hover:bg-gray-100'
+                }`;
+                button.innerHTML = `<span class="text-xs text-agro font-bold mr-1">0${index+1}.</span> ${area.title}`;
+                button.onclick = () => updateArea360(index);
+                navContainer.appendChild(button);
+            });
+        }
+
+        function updateArea360(index) {
+            const buttons = document.querySelectorAll('.area-btn-360');
+            buttons.forEach((btn, i) => {
+                if (i === index) {
+                    btn.className = "area-btn-360 text-left px-5 py-3 border-l-4 border-agro bg-agro/10 text-agro-dark font-bold transition-all focus:outline-none";
+                } else {
+                    btn.className = "area-btn-360 text-left px-5 py-3 border-l-4 border-transparent text-gray-500 hover:text-agro-dark hover:bg-gray-100 transition-all focus:outline-none";
+                }
+            });
+            const contentBlock = document.getElementById('area-content-360');
+            if (contentBlock) {
+                contentBlock.style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('area-title-360').textContent = areasData360[index].title;
+                    document.getElementById('area-question-360').textContent = areasData360[index].question;
+                    document.getElementById('area-measure-360').textContent = areasData360[index].measure;
+                    contentBlock.style.opacity = '1';
+                }, 150);
+            }
+        }
+
+        function openModal360() {
+            if (!modal360 || !modal360Content) return;
+            build360Navigation(); updateArea360(0);
+            modal360.classList.remove('hidden'); modal360.classList.add('flex');
+            void modal360.offsetWidth;
+            modal360.classList.add('opacity-100');
+            modal360Content.classList.remove('scale-95'); modal360Content.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal360() {
+            if (!modal360 || !modal360Content) return;
+            modal360.classList.remove('opacity-100');
+            modal360Content.classList.remove('scale-100'); modal360Content.classList.add('scale-95');
+            setTimeout(() => {
+                modal360.classList.add('hidden'); modal360.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // --- KBF Modal Interaction Logic ---
+        const modalKBF = document.getElementById('modal-kbf');
+        const modalKBFContent = document.getElementById('modal-kbf-content');
+        function openModalKBF() {
+            if (!modalKBF || !modalKBFContent) return;
+            modalKBF.classList.remove('hidden'); modalKBF.classList.add('flex');
+            void modalKBF.offsetWidth;
+            modalKBF.classList.add('opacity-100');
+            modalKBFContent.classList.remove('scale-95'); modalKBFContent.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModalKBF() {
+            if (!modalKBF || !modalKBFContent) return;
+            modalKBF.classList.remove('opacity-100');
+            modalKBFContent.classList.remove('scale-100'); modalKBFContent.classList.add('scale-95');
+            setTimeout(() => {
+                modalKBF.classList.add('hidden'); modalKBF.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+
+        // === SCRIPT KHUSUS INTELLIGENCE BRIEF ===
+        const intelModal = document.getElementById('intel-brief-modal');
+        let isIntelInit = false; // Flag supaya data tidak difetch berulang kali saat modal dibuka-tutup
+
+        function openIntelModal() {
+            intelModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Stop scroll pada bg utama
+            
+            // Inisialisasi API data HANYA saat pertama kali modal dibuka
+            if (!isIntelInit) {
+                renderDashboard();
+                renderVerificationTable();
+                initPesticideAPI();
+                initBiostimulantAPI();
+                initNewsAPI();
+                isIntelInit = true;
+            }
+        }
+
+        function closeIntelModal() {
+            intelModal.classList.add('hidden');
+            document.body.style.overflow = ''; // Kembalikan scroll utama
+        }
+
+        // Data & Fungsi Intelligence Brief dipindahkan ke dalam fungsi scope global
+        // agar dapat dijalankan saat modal dipanggil.
+        
+        const dashboardMetrics = [{"id":"pangan-pokok","category":"Padi & Biji-bijian","emoji":"🌾","title":"GKP Tinggi, Stok Bulog Rekor","tagColor":"blue","metrics":[{"label":"Harga GKP Petani","value":"Rp 6.500 - 7.200/kg (Di atas HPP)","status":"TINGGI"},{"label":"GKP Jatim","value":"Rp 13.700/kg","status":"PRODUSEN"},{"label":"Ancaman Puso","value":"Natar & Karawang","status":"AWAS"}],"statusText":"Harga Gabah Kering Panen (GKP) stabil di atas HPP, mengamankan daya beli petani padi. Dorong paket nutrisi daun dan asuransi pertanian sebelum puncak kemarau mengeringkan lahan tadah hujan."},{"id":"jagung-horti","category":"Jagung & Hortikultura","emoji":"🌽","title":"Jagung Naik, Cabai & Bawang Turun","tagColor":"amber","metrics":[{"label":"Jagung Pipilan Kering","value":"Rp 3.200 - 3.600/kg (petani); Rp 8.250/kg (Jatim)","status":"NAIK"},{"label":"Cabai Rawit","value":"Rp 30.000/kg (petani Kediri); Rp 43.122/kg (Jatim konsumen)","status":"TURUN"},{"label":"Bawang Merah","value":"Rp 22.500 - 24.000/kg (petani); Rp 35.690/kg (Jatim)","status":"TURUN"}],"statusText":"Jagung naik → fokuskan pemasaran herbisida/pupuk untuk jagung. Cabai dan Bawang Merah TERKOREKSI TURUN → tawarkan biostimulan hemat biaya untuk mempertahankan margin mereka di tengah harga murah."},{"id":"sawit-karet","category":"Perkebunan Utama","emoji":"🌴","title":"B50 Dukung TBS, Karet Masih Lemah","tagColor":"emerald","metrics":[{"label":"TBS Riau","value":"Rp 1.700 - 2.150/kg (pekebun)","status":"STABIL"},{"label":"B50 Nasional","value":"Berlaku 1 Juli","status":"DRIVER"},{"label":"Karet Sheet","value":"Rp 15.000 - 18.000/kg","status":"TURUN"}],"statusText":"B50 memberi daya ungkit sawit. Fokuskan herbisida sistemik glifosat kemasan besar ke perkebunan plasma. Karet lemah → tunda promosi input untuk karet."},{"id":"kopi-kakao","category":"Kopi & Kakao","emoji":"☕","title":"Arabika Menguat, Robusta Stabil","tagColor":"zinc","metrics":[{"label":"Kopi Arabika G1","value":"Rp 75.000 - 95.000/kg","status":"NAIK"},{"label":"Kopi Robusta G1","value":"Rp 40.000 - 52.000/kg","status":"STABIL"},{"label":"Kakao","value":"Rp 25.000 - 28.000/kg","status":"MONITOR"}],"statusText":"Arabika menguat karena permintaan specialty coffee global; robusta stabil. Kakao masih volatil, pantau ICCO."},{"id":"kentang","category":"Kentang","emoji":"🥔","title":"Kentang Stabil di Level Konsumen","tagColor":"blue","metrics":[{"label":"Kentang Grade A","value":"Rp 8.000 - 10.000/kg (petani); Rp 14.780/kg (Jatim)","status":"STABIL"},{"label":"Siskaperbapo Jatim","value":"Belum update","status":"SIAGA"},{"label":"Tren","value":"→ Stabil","status":"STABIL"}],"statusText":"Data produsen Jatim belum tersedia; harga konsumen stabil. Fokuskan fungisida dan nutrisi kentang di daerah produksi (Malang, Probolinggo, Dieng)."}];
+
+        const factCheckingData = [{"claim":"Bapanas Pastikan Ketersediaan Pangan Hadapi Musim Kemarau","source":{"name":"ANTARA News","url":"https://www.antaranews.com/"},"timestamp":"11 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Ketahanan pangan makro kuat. Jangan overstock beras; fokus ke input pertanian."},{"claim":"Telaah: Delapan Belas Tahun Menuju B50","source":{"name":"ANTARA News","url":"https://www.antaranews.com/"},"timestamp":"11 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Momen penting perkebunan sawit. Dorong herbisida sistemik ke koperasi plasma."},{"claim":"Mentan: Hilirisasi Sawit Perkuat Ketahanan Energi-Kesejahteraan Petani","source":{"name":"ANTARA News","url":"https://www.antaranews.com/"},"timestamp":"10 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Momen penting perkebunan sawit. Dorong herbisida sistemik ke koperasi plasma."},{"claim":"Prabowo: 5 Bendungan Baru Tambah Produksi Beras hingga 1 Juta Ton","source":{"name":"ANTARA News","url":"https://www.antaranews.com/"},"timestamp":"10 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"Kementan Upland Project Tingkatkan Hasil Panen Bawang Merah di Malang","source":{"name":"ANTARA News","url":"https://www.antaranews.com/"},"timestamp":"10 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Tawarkan program kawalan teknis agronomi yang menyerupai SOP PM-AAS."},{"claim":"Kementan Salurkan Benih Jagung Hibrida untuk Petani Blitar","source":{"name":"ANTARA News","url":"https://www.antaranews.com/"},"timestamp":"10 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Tawarkan program kawalan teknis agronomi yang menyerupai SOP PM-AAS."},{"claim":"Pemkab Gunungkidul: Festival Cokelat 4.0 Perkuat Hilirisasi Kakao","source":{"name":"ANTARA News","url":"https://www.antaranews.com/"},"timestamp":"10 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"Telaah: Mengamankan Ekonomi dan Produksi Pangan Nasional saat El Nino","source":{"name":"ANTARA News","url":"https://www.antaranews.com/"},"timestamp":"10 Jul 2026","status":"! PERINGATAN","notes":"Jual biostimulan anti-stres dan asuransi pertanian sebagai perlindungan."},{"claim":"Kementan Perluas Pompanisasi 200.000 Ha di Jawa Timur","source":{"name":"Kementan","url":"https://www.antaranews.com/"},"timestamp":"07 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"Harga Cabai Rawit di Purwakarta Tembus Rp 90.000/kg","source":{"name":"Kompas.com","url":"https://www.antaranews.com/"},"timestamp":"07 Jul 2026","status":"! PERINGATAN","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"Pemerintah Kaji Subsidi Pupuk Nonsubsidi untuk Hortikultura","source":{"name":"Bisnis.com","url":"https://www.antaranews.com/"},"timestamp":"06 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"Petani Karet Langkat Keluhkan Harga Pupuk Urea Rp 400 Ribu/Sak","source":{"name":"Liputan6","url":"https://www.antaranews.com/"},"timestamp":"06 Jul 2026","status":"! PERINGATAN","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"Ekspor Kopi RI ke Jepang Naik 12% YoY","source":{"name":"Dinas Perdagangan","url":"https://www.antaranews.com/"},"timestamp":"05 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"Wereng Batang Padi Muncul di Karawang","source":{"name":"BKP Kementan","url":"https://www.antaranews.com/"},"timestamp":"05 Jul 2026","status":"! PERINGATAN","notes":"Distribusikan rodentisida dan insektisida sistemik ke daerah terdampak segera."},{"claim":"DPRD Malang Desak TAPD Cairkan Anggaran Darurat Tikus","source":{"name":"Suara Indonesia / Google News","url":"https://www.antaranews.com/"},"timestamp":"04 Jul 2026","status":"! PERINGATAN","notes":"Distribusikan rodentisida dan insektisida sistemik ke daerah terdampak segera."},{"claim":"WMO / BMKG Ingatkan El Nino Menguat Cepat","source":{"name":"WMO / BMKG / ANTARA","url":"https://www.antaranews.com/"},"timestamp":"03 Jul 2026","status":"! PERINGATAN","notes":"Jual biostimulan anti-stres dan asuransi pertanian sebagai perlindungan."},{"claim":"BNPB Salurkan Bantuan Darurat Air Bersih ke Pulau Jawa","source":{"name":"ANTARA News","url":"https://www.antaranews.com/"},"timestamp":"03 Jul 2026","status":"! PERINGATAN","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"B50 Resmi Berlaku, Indonesia Cetak Sejarah Dunia","source":{"name":"Kemenko Ekuin / ANTARA","url":"https://www.antaranews.com/"},"timestamp":"01 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Momen penting perkebunan sawit. Dorong herbisida sistemik ke koperasi plasma."},{"claim":"NTPP Tembus 114,65, Harga GKP Petani Rp6.989/kg","source":{"name":"BPS / ANTARA","url":"https://www.antaranews.com/"},"timestamp":"01 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Daya beli tinggi. Push produk premium dan paket perlindungan tanaman."},{"claim":"Harga Cabai Rawit Anjlok 31% Dalam Sepekan","source":{"name":"PIHPS / BI","url":"https://www.antaranews.com/"},"timestamp":"01 Jul 2026","status":"~ MIXED","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"Petani Gagal Panen Bisa Klaim Asuransi Rp 6 Juta per Ha","source":{"name":"CNBC Indonesia","url":"https://www.antaranews.com/"},"timestamp":"01 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Edukasi petani untuk mendaftar asuransi pertanian sebagai mitigasi risiko."},{"claim":"Stok CBP Bulog 5,17 Juta Ton, Tertinggi Sepanjang Sejarah","source":{"name":"Bapanas / Tempo","url":"https://www.antaranews.com/"},"timestamp":"30 Jun 2026","status":"✓ TERVERIFIKASI","notes":"Ketahanan pangan makro kuat. Jangan overstock beras; fokus ke input pertanian."},{"claim":"Sleman Siaga Wereng Batang Coklat, Pemda Kirim Peringatan","source":{"name":"Koran Bernas / Merdeka","url":"https://www.antaranews.com/"},"timestamp":"30 Jun 2026","status":"! PERINGATAN","notes":"Distribusikan rodentisida dan insektisida sistemik ke daerah terdampak segera."},{"claim":"RI-Belarus Luncurkan Peta Jalan Agrikultur 2026-2030","source":{"name":"Bilateral RI / ANTARA","url":"https://www.antaranews.com/"},"timestamp":"27 Jun 2026","status":"✓ TERVERIFIKASI","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."},{"claim":"Sistem PM-AAS Hasilkan Produktivitas Revolusioner 12,4 Ton/Ha","source":{"name":"Kementan / Liputan6","url":"https://www.antaranews.com/"},"timestamp":"25 Jun 2026","status":"✓ TERVERIFIKASI","notes":"Tawarkan program kawalan teknis agronomi yang menyerupai SOP PM-AAS."},{"claim":"Padi Usia 25 Hari Menguning, Petani Natar Terancam Puso","source":{"name":"Kompas.com","url":"https://www.antaranews.com/"},"timestamp":"20 Jun 2026","status":"! PERINGATAN","notes":"Sorotan strategis; sesuaikan pesan penjualan dengan sentimen pasar."}, {"claim": "Jagung pipilan kering naik ke Rp 3.200–3.600/kg karena pasokan terbatas", "source": {"name": "HargaPangan.id / Local Market", "url": "https://www.badanpangan.go.id"}, "timestamp": "11 Jul 2026", "status": "✓ TERVERIFIKASI", "notes": "Momentum promosi herbisida jagung dan pupuk makro."}, {"claim": "Cabai rawit turun 31% sepekan (Rp 91.650 → Rp 63.200/kg nasional)", "source": {"name": "PIHPS / Bank Indonesia", "url": "https://www.bi.go.id"}, "timestamp": "03 Jul 2026", "status": "✓ TERVERIFIKASI", "notes": "Petani cabai margin tipis. Tawarkan biostimulan murah dan fungisida busuk buah."}, {"claim": "Harga bawang merah turun Rp 22.500/kg karena produksi Upland Project meningkat", "source": {"name": "Siskaperbapo / Kementan", "url": "https://siskaperbapo.jatimprov.go.id"}, "timestamp": "11 Jul 2026", "status": "✓ TERVERIFIKASI", "notes": "Dorong nutrisi khusus bawang merah hemat biaya untuk mempertahankan margin."}, {"claim": "Sistem PM-AAS Kementan hasilkan padi 12,4 ton/ha", "source": {"name": "Kementan / Liputan6", "url": "https://www.liputan6.com/"}, "timestamp": "25 Jun 2026", "status": "✓ TERVERIFIKASI", "notes": "Gunakan data benchmark untuk edukasi petani soal nutrisi dan populasi."}, {"claim":"Paten CTPR (Prevathon) segera habis, peluang masuknya obat generik India","source":{"name":"CCPIA/Intelijen Pasar","url":"https://www.ccpia.com.cn/"},"timestamp":"08 Jul 2026","status":"✓ TERVERIFIKASI","notes":"Siapkan brand/label sendiri, pasokan dari India/China. Beritahu jaringan distributor akan ada produk murah setara."}];
+
+        async function fetchPesticideDataReal() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        "herbisida": [
+                            {"category": "Herbisida", "name": "Glifosat (Glyphosate) 95% TC", "price": "¥34.000 / ton ($4.867)", "d30": "NAIK", "note": "Rush export sebelum penghapusan tax rebate efektif", "status": "CRITICAL"},
+                            {"category": "Herbisida", "name": "Glufosinate-ammonium 95% TC", "price": "¥51.000 / ton ($7.374)", "d30": "TURUN", "note": "Weak demand", "status": "NORMAL"},
+                            {"category": "Herbisida", "name": "Diquat 40% TK", "price": "¥17.400 / ton ($2.477)", "d30": "NAIK", "note": "Reversal tren dari pelemahan Q2", "status": "CRITICAL"}
+                        ],
+                        "insektisida": [
+                            {"category": "Insektisida", "name": "Chlorantraniliprole (CTPR) 95% TC", "price": "¥320.000 / ton ($45.584)", "d30": "LONJAKAN", "note": "Krisis K-amine pasca ledakan pabrik Youdao Chemical", "status": "CRITICAL"},
+                            {"category": "Insektisida", "name": "Chlorpyrifos 97% TC", "price": "¥41.000 / ton ($5.899)", "d30": "STABIL", "note": "ICAMA restriction efektif Agustus 2026", "status": "NORMAL"},
+                            {"category": "Insektisida", "name": "Indoxacarb 95% TC", "price": "¥480.000 / ton ($70.796)", "d30": "TURUN", "note": "Oversupply pabrik baru Shandong (Kapasitas naik 37%)", "status": "NORMAL"}
+                        ],
+                        "fungisida": [
+                            {"category": "Fungisida", "name": "Mancozeb 85% WP", "price": "¥26.600 / ton ($3.800)", "d30": "NAIK", "note": "Permintaan South America (LatAm) sangat kuat", "status": "NORMAL"},
+                            {"category": "Fungisida", "name": "Chlorothalonil 98% WP", "price": "¥29.400 / ton ($4.200)", "d30": "NAIK", "note": "+41.6% YoY tight supply/keterbatasan pasokan", "status": "NORMAL"},
+                            {"category": "Fungisida", "name": "Tebuconazole 97% TC", "price": "¥51.700 / ton ($7.374)", "d30": "NAIK", "note": "Permintaan golongan Triazole mulai meningkat", "status": "NORMAL"}
+                        ],
+                        "news": [
+                            {"date": "08 Jul 2026", "content": "Ledakan pabrik Youdao Chemical memicu bottleneck pasokan K-amine, bahan baku utama CTPR. Harga technical melonjak ke RMB 320.000/ton.", "source": "AgroPages"},
+                            {"date": "06 Jul 2026", "content": "Penghapusan Tax Rebate ekspor (berlaku efektif April 2026) terus memicu produsen Glifosat melakukan rush-export, mendongkrak harga ke RMB 34.000.", "source": "CCPIA"}
+                        ],
+                        "recommendations": [
+                            {"status": "ALERT", "trigger": "Krisis Supply CTPR", "actions": [{"role": "Purchasing", "text": "Segera amankan stok CTPR technical atau formulasi dari supplier India (Tagros/UPL) sebagai substitusi China."}, {"role": "Sales", "text": "Tahan diskon untuk insektisida berbahan aktif CTPR (setara Prevathon/Virtako), nilai barang ini sedang melonjak."}]},
+                            {"status": "PELUANG", "trigger": "Off-Patent Wave 2026", "actions": [{"role": "Marketing", "text": "Siapkan kampanye produk generik pengganti Prevathon (CTPR) dan Virtako (CTPR+Thiamethoxam). Paten jatuh tempo membanjiri pasar dengan obat India/China murah."}]}
+                        ]
+                    });
+                }, 800);
+            });
+        }
+
+        async function fetchBiostimulantData() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve([{"name":"Seaweed Extract Liquid","price":"¥10.000/ton ($1.470)","trend":"+15,3% YoY","supplier":"Qingdao Jingfeng Tiantai"},{"name":"Seaweed Extract Powder","price":"¥14.200/ton ($2.088)","trend":"+15,3% YoY","supplier":"Qingdao Jingfeng Tiantai"},{"name":"Humic Acid Powder","price":"¥4.600/ton ($676)","trend":"+28,6% YoY","supplier":"Shanxi Xinhuashengyuan"},{"name":"Amino Acid Liquid","price":"¥7.500/ton ($1.103)","trend":"+20,0% YoY","supplier":"Changsha New-Nutri"},{"name":"Amino Acid Powder","price":"¥10.500/ton ($1.544)","trend":"+20,0% YoY","supplier":"Changsha New-Nutri"},{"name":"Microbial Product Liquid","price":"¥18.000/ton ($2.647)","trend":"+16,7% YoY","supplier":"Industry"},{"name":"Microbial Product Powder","price":"¥23.500/ton ($3.455)","trend":"+16,7% YoY","supplier":"Industry"},{"name":"Fish Protein Liquid","price":"¥13.200/ton ($1.941)","trend":"+8,3% YoY","supplier":"Industry"},{"name":"Chitosan Powder","price":"¥37.500/ton ($5.514)","trend":"+5,7% YoY","supplier":"Industry"},{"name":"Fulvic Acid Liquid","price":"¥11.200/ton ($1.647)","trend":"+10,0% YoY","supplier":"Xinjiang Double Dragon"}]);
+                }, 600);
+            });
+        }
+
+        async function fetchRealTimeAgriNews() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve([{"date":"11 Jul 2026","category":"Ketahanan Pangan","title":"Bapanas Pastikan Ketersediaan Pangan Hadapi Musim Kemarau","content":"Kepala Bapanas sekaligus Mentan Andi Amran Sulaiman memastikan cadangan pangan siap menghadapi musim kemarau. Stok CPP beras di Bulog 5,2 juta ton per 8 Juli. Cadangan jagung pakan 188 ribu ton. Neraca pangan surplus: cabai besar, cabai rawit, bawang merah, telur ayam, daging ayam. Juni awal musim kering, Juli-Agustus pangan aman terutama beras.","tag":"POSITIF","color":"blue","source":"ANTARA News","url":"https://www.antaranews.com/"},{"date":"11 Jul 2026","category":"Kebijakan Energi","title":"Telaah: Delapan Belas Tahun Menuju B50","content":"B50 berlaku penuh sejak 1 Juli 2026, akumulasi 18 tahun kebijakan energi berbasis sawit. Perjalanan: B2,5 (2008) ke B50 (2026). Tiga presiden berkontribusi: SBY (fondasi), Jokowi (akselerasi B20-B40), Prabowo (B50). Pemanfaatan biodiesel 2025: 14,2 juta kl (105,2% target).","tag":"POSITIF","color":"emerald","source":"ANTARA News","url":"https://www.antaranews.com/"},{"date":"10 Jul 2026","category":"Kebijakan Energi","title":"Mentan: Hilirisasi Sawit Perkuat Ketahanan Energi-Kesejahteraan Petani","content":"Mentan: B50 momentum strategis perkuat hilirisasi sawit. Produksi CPO 2025: 51,66 juta ton (+7,3%). Ekspor: 32,34 juta ton. B50 perluas pasar domestik minyak sawit, meningkatkan permintaan TBS, memperkuat harga di tingkat petani.","tag":"POSITIF","color":"emerald","source":"ANTARA News","url":"https://www.antaranews.com/"},{"date":"10 Jul 2026","category":"Infrastruktur Pertanian","title":"Prabowo: 5 Bendungan Baru Tambah Produksi Beras hingga 1 Juta Ton","content":"Presiden Prabowo meresmikan 5 bendungan: Meninting (NTB), Keureuto (Aceh), Rukoh (Aceh), Jlantah (Jateng), Sidan (Bali). Investasi Rp9,79 triliun. Petani intensitas tanam naik dari 2x ke 3x/tahun. Dari B50 hemat Rp170 triliun — bisa bangun puluhan bendungan tiap tahun.","tag":"POSITIF","color":"emerald","source":"ANTARA News","url":"https://www.antaranews.com/"},{"date":"10 Jul 2026","category":"Teknologi Pertanian","title":"Kementan Upland Project Tingkatkan Hasil Panen Bawang Merah di Malang","content":"Upland Project di Desa Tawangsari, Pujon, Malang: hasil panen bawang merah naik dari 11 ton/ha ke 16 ton/ha (+45%). Dukungan pompa air, embung, JUT. Masa tanam dari 2x ke 3x/tahun. Pengembangan benih bawang merah untuk kecamatan lain.","tag":"POSITIF","color":"emerald","source":"ANTARA News","url":"https://www.antaranews.com/"},{"date":"10 Jul 2026","category":"Teknologi Pertanian","title":"Kementan Salurkan Benih Jagung Hibrida untuk Petani Blitar","content":"96,3 ton benih jagung hibrida untuk 6.457 ha di Blitar, 366 kelompok tani, 17 kecamatan. 3 varietas: Bisi 18, JAB 69 Sakti, Maxxi. Penyaluran Juni-Juli 2026.","tag":"POSITIF","color":"emerald","source":"ANTARA News","url":"https://www.antaranews.com/"},{"date":"10 Jul 2026","category":"Hilirisasi","title":"Pemkab Gunungkidul: Festival Cokelat 4.0 Perkuat Hilirisasi Kakao","content":"Festival Cokelat 4.0 di Gunungkidul, DIY. Momentum perkuat hilirisasi kakao + integrasi pertanian, pariwisata, ekonomi kreatif. Kakao lokal berkualitas unggul sebagai penggerak ekonomi masyarakat.","tag":"POSITIF","color":"emerald","source":"ANTARA News","url":"https://www.antaranews.com/"},{"date":"10 Jul 2026","category":"Bencana & Iklim","title":"Telaah: Mengamankan Ekonomi dan Produksi Pangan Nasional saat El Nino","content":"El Nino di Indonesia: iklim kering, pasokan air terhambat, hasil panen menurun. BMKG: ~1/3 wilayah Indonesia sudah masuk musim kemarau El Nino. Puncak kekeringan Agustus-September 2026. Strategi mitigasi: pemetaan wilayah kerawanan, ketersediaan air, varietas tanaman sesuai.","tag":"NEGATIF","color":"red","source":"ANTARA News","url":"https://www.antaranews.com/"},{"date":"07 Jul 2026","category":"Berita Positif","title":"Kementan Perluas Pompanisasi 200.000 Ha di Jawa Timur","content":"Program pompanisasi mulai diterapkan di lahan tadah hujan untuk mitigasi kekeringan.","tag":"POSITIF","color":"emerald","source":"Kementan","url":"https://www.antaranews.com/"},{"date":"07 Jul 2026","category":"Berita Negatif","title":"Harga Cabai Rawit di Purwakarta Tembus Rp 90.000/kg","content":"Pasokan lokal berkurang akibat cuaca ekstrem.","tag":"NEGATIF","color":"red","source":"Kompas.com","url":"https://www.antaranews.com/"},{"date":"06 Jul 2026","category":"Berita Positif","title":"Pemerintah Kaji Subsidi Pupuk Nonsubsidi untuk Hortikultura","content":"Diskusi stimulus untuk menekan biaya produksi sayuran.","tag":"POSITIF","color":"emerald","source":"Bisnis.com","url":"https://www.antaranews.com/"},{"date":"06 Jul 2026","category":"Berita Negatif","title":"Petani Karet Langkat Keluhkan Harga Pupuk Urea Rp 400 Ribu/Sak","content":"Biaya produksi melonjak sementara harga karet tertekan.","tag":"NEGATIF","color":"red","source":"Liputan6","url":"https://www.antaranews.com/"},{"date":"05 Jul 2026","category":"Berita Positif","title":"Ekspor Kopi RI ke Jepang Naik 12% YoY","content":"Permintaan kopi specialty meningkat di pasar Jepang.","tag":"POSITIF","color":"emerald","source":"Dinas Perdagangan","url":"https://www.antaranews.com/"},{"date":"05 Jul 2026","category":"Berita Negatif","title":"Wereng Batang Padi Muncul di Karawang","content":"Ditjen PPHP turunkan tim pengendalian.","tag":"NEGATIF","color":"red","source":"BKP Kementan","url":"https://www.antaranews.com/"},{"date":"04 Jul 2026","category":"Darurat Hama","title":"DPRD Malang Desak TAPD Cairkan Anggaran Darurat Tikus","content":"Hama tikus menyerang puluhan hektare lahan pertanian di Kabupaten Malang secara masif. DPRD mendesak Tim Anggaran Pemerintah Daerah (TAPD) segera mencairkan dana darurat penanggulangan.","tag":"NEGATIF","color":"red","source":"Suara Indonesia / Google News","url":"https://www.antaranews.com/"},{"date":"03 Jul 2026","category":"Bencana & Iklim","title":"WMO / BMKG Ingatkan El Nino Menguat Cepat","content":"WMO mengonfirmasi transisi cepat menuju El Nino kuat. Suhu permukaan laut Pasifik diprediksi naik >2°C, memicu kekeringan dan cuaca ekstrem. BNPB salurkan air darurat ke Jawa.","tag":"NEGATIF","color":"red","source":"WMO / BMKG / ANTARA","url":"https://www.antaranews.com/"},{"date":"03 Jul 2026","category":"Krisis Air Bersih","title":"BNPB Salurkan Bantuan Darurat Air Bersih ke Pulau Jawa","content":"Gunungkidul tetapkan Siaga Darurat Kekeringan. BNPB segera cairkan Dana Siap Pakai dan distribusikan truk air ke Kab. Semarang dan Jember yang alami kerusakan bendungan irigasi.","tag":"NEGATIF","color":"amber","source":"ANTARA News","url":"https://www.antaranews.com/"},{"date":"01 Jul 2026","category":"Kebijakan Energi","title":"B50 Resmi Berlaku, Indonesia Cetak Sejarah Dunia","content":"Indonesia resmi terapkan mandatori biodiesel 50% (B50). Pertamina siagakan 29 terminal BBM. Penghematan devisa negara mencapai Rp722,9 triliun, dorong harga TBS pekebun lokal.","tag":"POSITIF","color":"emerald","source":"Kemenko Ekuin / ANTARA","url":"https://www.antaranews.com/"},{"date":"01 Jul 2026","category":"Daya Beli Petani","title":"NTPP Tembus 114,65, Harga GKP Petani Rp6.989/kg","content":"Nilai Tukar Petani Pertanian (NTPP) Juni tertinggi sejak Maret 2024. Indeks harga petani padi catat rekor 7 tahun terakhir karena harga GKP melonjak jauh meninggalkan HPP pemerintah (Rp6.500).","tag":"POSITIF","color":"emerald","source":"BPS / ANTARA","url":"https://www.antaranews.com/"},{"date":"01 Jul 2026","category":"Harga Komoditas","title":"Harga Cabai Rawit Anjlok 31% Dalam Sepekan","content":"Terjadi koreksi tajam harga bahan pokok; harga cabai rawit turun dari Rp91.650 menjadi Rp63.200 per kilogram. Bantuan pangan beras sebesar 997,3 ribu ton juga dipastikan lanjut Juli-September.","tag":"MIXED","color":"blue","source":"PIHPS / BI","url":"https://www.antaranews.com/"},{"date":"01 Jul 2026","category":"Mitigasi Pemerintah","title":"Petani Gagal Panen Bisa Klaim Asuransi Rp 6 Juta per Ha","content":"Menghadapi risiko El Nino dan hama, Kementan mendesak petani mendaftar asuransi pertanian. Lahan yang mengalami puso berhak atas klaim penggantian Rp 6 juta per hektare.","tag":"POSITIF","color":"blue","source":"CNBC Indonesia","url":"https://www.antaranews.com/"},{"date":"30 Jun 2026","category":"Ketahanan Pangan","title":"Stok CBP Bulog 5,17 Juta Ton, Tertinggi Sepanjang Sejarah","content":"Kapasitas gudang 3 juta ton penuh, Bulog terpaksa simpan 2,2 juta ton di gudang sewa. Surplus beras Jan-Jun capai 3,79 juta ton.","tag":"POSITIF","color":"blue","source":"Bapanas / Tempo","url":"https://www.antaranews.com/"},{"date":"30 Jun 2026","category":"Proteksi Tanaman","title":"Sleman Siaga Wereng Batang Coklat, Pemda Kirim Peringatan","content":"Dinas Pertanian Sleman mengeluarkan peringatan dini hingga tingkat kelurahan menyusul terdeteksinya hama Wereng Batang Coklat (WBC) yang kerap meledak pada masa transisi kemarau.","tag":"NEGATIF","color":"amber","source":"Koran Bernas / Merdeka","url":"https://www.antaranews.com/"},{"date":"27 Jun 2026","category":"Hubungan Bilateral","title":"RI-Belarus Luncurkan Peta Jalan Agrikultur 2026-2030","content":"Kerjasama ini menjamin pertukaran teknologi, pasokan pupuk, dan alat berat. Belarus resmi meratifikasi EAEU FTA, yang berarti membuka tol ekspor bagi produk pangan dan sawit Indonesia ke pasar Eropa Timur.","tag":"POSITIF","color":"emerald","source":"Bilateral RI / ANTARA","url":"https://www.antaranews.com/"},{"date":"25 Jun 2026","category":"Teknologi Pertanian","title":"Sistem PM-AAS Hasilkan Produktivitas Revolusioner 12,4 Ton/Ha","content":"Sistem Precision Modern Agriculture System (PM-AAS) berhasil melipatgandakan populasi hingga 1 juta rumpun/ha, mengubah produktivitas padi 5 ton menjadi 12,4 ton/ha. Mendapat apresiasi langsung Presiden di PENAS XVII.","tag":"POSITIF","color":"blue","source":"Kementan / Liputan6","url":"https://www.antaranews.com/"},{"date":"20 Jun 2026","category":"Ancaman Puso","title":"Padi Usia 25 Hari Menguning, Petani Natar Terancam Puso","content":"Dampak kekeringan parah menyebabkan tanaman padi usia 25 hari di Natar, Lampung menguning. Ribuan petani terancam mengalami gagal panen (puso) jika tidak ada intervensi pengairan segera.","tag":"NEGATIF","color":"red","source":"Kompas.com","url":"https://www.antaranews.com/"}]);
+                }, 600);
+            });
+        }
+
+        let theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        let currentNewsPage = 1;
+        const NEWS_PER_PAGE = 12;
+        let allNewsData = [];
+
+        function getStatusClass(status) {
+            if (['NAIK', 'AWAS', 'TEGAS', 'LONJAKAN', 'REKOR', 'DRIVER', 'GAME CHANGER', 'EKSPOR', 'WARNING', 'PERINGATAN', 'CRITICAL'].includes(status)) return 'bg-red-500 text-white';
+            if (['TURUN', 'STABIL', 'TETAP', 'STOK AMAN', 'SIAGA'].includes(status)) return 'bg-blue-500 text-white';
+            if (['SOLUSI', 'POSITIF', 'MONITOR', 'TERCAPAI', 'MASIF', 'PROSES', 'KOMITMEN', 'INVESTASI', 'TRANSFORMASI', 'DIPLOMASI', 'HILIRISASI', 'EFISIENSI', 'SURPLUS', 'TEKNOLOGI', 'RESILIENSI', 'KEMITRAAN', 'DAYA BELI', 'HARGA NAIK', 'DIVERSIFIKASI', 'EVENT', 'PDRB', 'EKSPANSI', 'NORMAL', 'TINGGI'].includes(status)) return 'bg-emerald-500 text-zinc-950';
+            return 'bg-zinc-200 text-zinc-900';
+        }
+
+        function renderDashboard() {
+            document.getElementById('dashboard-grid').innerHTML = dashboardMetrics.map(item => {
+                const tagColor = item.tagColor === 'red' ? 'bg-red-500 text-white' : item.tagColor === 'blue' ? 'bg-blue-500 text-white' : item.tagColor === 'emerald' ? 'bg-emerald-500 text-zinc-950' : item.tagColor === 'zinc' ? 'bg-zinc-950 text-white' : 'bg-amber-400 text-zinc-950';
+                const metricsHtml = item.metrics.map(metric => `<div class="flex justify-between items-center text-sm py-3 border-b-2 border-zinc-200 dark:border-zinc-800 last:border-none"><span class="text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-wide">${metric.label}</span><div class="font-black text-zinc-950 dark:text-white font-mono flex items-center gap-2"><span>${metric.value}</span><span class="text-[9px] px-2 py-1 uppercase tracking-widest border border-zinc-950 ${getStatusClass(metric.status)}">${metric.status}</span></div></div>`).join('');
+                return `<div class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none flex flex-col overflow-hidden neo-shadow neo-interactive transition-all"><div class="p-3 font-black uppercase text-xs tracking-widest border-b-3 border-zinc-950 flex justify-between items-center ${tagColor}"><span class="flex items-center gap-2"><span>${item.emoji}</span><span>${item.category}</span></span></div><div class="p-6 flex flex-col justify-between h-full"><div class="space-y-5"><h4 class="font-display font-black text-zinc-950 dark:text-white text-xl uppercase leading-tight">${item.title}</h4><div class="space-y-1">${metricsHtml}</div></div><div class="mt-6 bg-zinc-50 dark:bg-zinc-950 p-4 border-2 border-dashed border-zinc-300 dark:border-zinc-700 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium"><strong class="text-emerald-700 dark:text-emerald-400 uppercase tracking-wider font-extrabold block mb-1.5 flex items-center gap-1.5"><svg class="w-3.5 h-3.5"><use href="#icon-zap"></use></svg> REKOMENDASI TAKTIS:</strong> ${item.statusText}</div></div></div>`;
+            }).join('');
+        }
+
+        function renderVerificationTable() {
+            document.getElementById('verification-table-body').innerHTML = factCheckingData.map(item => `
+                <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
+                    <td class="p-4"><div class="font-bold text-zinc-950 dark:text-white">${item.claim}</div><a href="${item.source.url}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono text-zinc-500 hover:text-blue-500 dark:hover:text-blue-400 mt-1.5 flex items-center gap-1 transition-colors"><svg class="w-3 h-3"><use href="#icon-globe"></use></svg> ${item.source.name} · ${item.timestamp}</a></td>
+                    <td class="p-4"><span class="bg-emerald-500 text-zinc-950 text-[10px] font-black px-2.5 py-1 uppercase tracking-widest border border-zinc-950">${item.status}</span></td>
+                    <td class="p-4 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium"><strong class="text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">💡 Sales Angle:</strong> ${item.notes}</td>
+                </tr>
+            `).join('');
+        }
+
+        async function initPesticideAPI() {
+            try {
+                const data = await fetchPesticideDataReal();
+                document.getElementById('api-loading-overlay').classList.add('hidden');
+                document.getElementById('pesticide-content-container').classList.remove('hidden');
+
+                const createTable = (title, tableData, isFungicide = false) => `<div class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 dark:border-zinc-800 rounded-none overflow-hidden neo-shadow ${isFungicide ? 'md:col-span-2' : ''}"><div class="bg-zinc-950 text-white p-3 text-xs font-black tracking-widest uppercase border-b-2 border-zinc-950">${title}</div><div class="overflow-x-auto scrollbar-hide"><table class="w-full text-left text-sm font-medium"><thead class="border-b-2 border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 font-mono text-[10px] uppercase text-zinc-500"><tr><th class="p-4 w-1/2">Bahan Aktif</th><th class="p-4">Harga (FOB)</th><th class="p-4">Trend (YoY)</th></tr></thead><tbody class="divide-y-2 divide-zinc-100 dark:divide-zinc-800">${tableData.map(item => `<tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"><td class="p-4"><div class="font-bold text-zinc-950 dark:text-white flex items-center gap-3"><span class="w-3 h-3 border border-zinc-950 shrink-0 ${item.status === 'CRITICAL' ? 'bg-red-500' : 'bg-emerald-500'}"></span>${item.name}</div>${item.note ? `<div class="text-[10px] font-medium text-zinc-500 dark:text-zinc-400 mt-1.5 ml-6 leading-tight">${item.note}</div>` : ''}</td><td class="p-4 font-mono font-black">${item.price}</td><td class="p-4 font-bold ${item.d30.startsWith('NAIK') || item.d30.startsWith('LONJAKAN') ? 'text-red-500' : item.d30 === 'STABIL' ? 'text-blue-500' : 'text-emerald-500'}">${item.d30}</td></tr>`).join('')}</tbody></table></div></div>`;
+
+                document.getElementById('pesticide-tables-container').innerHTML = createTable('Herbisida', data.herbisida) + createTable('Insektisida', data.insektisida) + createTable('Fungisida', data.fungisida, true);
+
+                if (data.news && data.recommendations) {
+                    document.getElementById('pesticide-news-recs-container').innerHTML = `
+                        <div class="bg-zinc-100 dark:bg-zinc-900 border-3 border-zinc-950 rounded-none overflow-hidden neo-shadow">
+                            <div class="px-6 py-4 bg-zinc-950 text-white border-b-2 border-zinc-950 flex justify-between items-center">
+                                <h4 class="font-display font-black text-sm text-white uppercase tracking-wider flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-teal-400"><use href="#icon-newspaper"></use></svg> Intelijen Taktis
+                                </h4>
+                            </div>
+                            <div class="p-6 bg-white dark:bg-zinc-950 divide-y-2 divide-zinc-200 dark:divide-zinc-800 space-y-5">
+                                ${data.news.map(item => `
+                                    <div class="flex gap-4 items-start pt-5 first:pt-0">
+                                        <span class="text-[11px] font-mono font-black shrink-0 text-zinc-500 mt-1">${item.date}</span>
+                                        <div>
+                                            <p class="text-sm text-zinc-800 dark:text-zinc-200 leading-relaxed font-bold mb-2">${item.content}</p>
+                                            <span class="text-[10px] font-black uppercase text-teal-600 tracking-widest font-mono">SUMBER: ${item.source}</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="bg-teal-50 dark:bg-teal-900/20 border-3 border-teal-600 rounded-none overflow-hidden neo-shadow">
+                            <div class="px-6 py-4 bg-teal-600 text-white border-b-2 border-teal-600 flex justify-between items-center">
+                                <h4 class="font-display font-black text-sm text-white uppercase tracking-wider flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-amber-300"><use href="#icon-lightbulb"></use></svg> Rekomendasi Kampanye
+                                </h4>
+                            </div>
+                            <div class="p-6 space-y-6">
+                                ${data.recommendations.map(rec => `
+                                    <div class="space-y-3">
+                                        <div class="flex items-center gap-3">
+                                            <span class="bg-zinc-950 text-white border border-zinc-950 text-[10px] font-black px-2 py-1 uppercase tracking-widest">${rec.status}</span>
+                                            <h5 class="font-display font-black text-sm text-zinc-950 dark:text-white uppercase tracking-tight">${rec.trigger}</h5>
+                                        </div>
+                                        <div class="border-l-3 border-teal-400 dark:border-teal-700 ml-3 pl-4">
+                                            ${rec.actions.map(act => `<p class="text-xs text-zinc-800 dark:text-zinc-300 leading-relaxed font-semibold"><strong class="text-teal-800 dark:text-teal-400 uppercase">${act.role}:</strong> ${act.text}</p>`).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error("Gagal memuat data pestisida:", error);
+            }
+        }
+
+        async function initBiostimulantAPI() {
+            const data = await fetchBiostimulantData();
+            document.getElementById('bio-loading-overlay').classList.add('hidden');
+            document.getElementById('biostimulant-content').classList.remove('hidden');
+            document.getElementById('biostimulant-table-body').innerHTML = data.map(item => `<tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"><td class="p-4 font-bold text-zinc-950 dark:text-white">${item.name}</td><td class="p-4 font-mono font-black text-zinc-950 dark:text-white">${item.price} <span class="text-[10px] text-zinc-500">/ ton</span></td><td class="p-4 text-xs font-medium text-zinc-600 dark:text-zinc-400 hidden sm:table-cell uppercase tracking-wider">${item.supplier}</td></tr>`).join('');
+        }
+
+        async function initNewsAPI() {
+            allNewsData = await fetchRealTimeAgriNews();
+            document.getElementById('news-loading-overlay').classList.add('hidden');
+            document.getElementById('news-grid').classList.remove('hidden');
+            renderNewsPage();
+        }
+
+        function renderNewsPage() {
+            const grid = document.getElementById('news-grid');
+            const dataToShow = allNewsData.slice(0, currentNewsPage * NEWS_PER_PAGE);
+
+            grid.innerHTML = dataToShow.map(news => `
+                <a href="${news.url}" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-zinc-900 border-3 border-zinc-950 rounded-none flex flex-col w-full h-full neo-shadow neo-interactive transition-all group block cursor-pointer">
+                    <div class="h-2 w-full shrink-0 ${news.color === 'red' ? 'bg-red-500' : news.color === 'amber' ? 'bg-amber-400' : news.color === 'emerald' ? 'bg-emerald-500' : news.color === 'zinc' ? 'bg-zinc-500' : 'bg-blue-500'}"></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center border-b-2 border-dashed border-zinc-300 dark:border-zinc-700 pb-3 mb-4 shrink-0">
+                            <span class="text-[10px] font-mono font-black uppercase tracking-widest text-zinc-500">${news.category}</span>
+                            <span class="text-[10px] font-mono font-bold text-zinc-950 dark:text-zinc-300">${news.date}</span>
+                        </div>
+                        <h3 class="font-display font-black text-zinc-950 dark:text-white text-lg mb-3 leading-snug shrink-0 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">${news.title}</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium mb-4 flex-grow">${news.content}</p>
+                    </div>
+                    <div class="px-6 pb-6 mt-auto shrink-0">
+                        <div class="pt-4 border-t-2 border-zinc-950 flex flex-wrap items-center justify-between gap-3 text-xs w-full">
+                            <span class="px-2.5 py-1 border-2 border-zinc-950 text-[10px] font-black uppercase tracking-widest ${news.color === 'red' ? 'bg-red-500 text-white' : news.color === 'amber' ? 'bg-amber-400 text-zinc-950' : news.color === 'emerald' ? 'bg-emerald-500 text-zinc-950' : news.color === 'zinc' ? 'bg-zinc-950 text-white' : 'bg-blue-500 text-white'}">${news.tag}</span>
+                            <span class="font-black text-[10px] uppercase text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white flex items-center gap-1.5 transition-colors"><svg class="w-3.5 h-3.5 shrink-0"><use href="#icon-globe"></use></svg> <span class="truncate max-w-[120px]">${news.source}</span></span>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+
+            if (dataToShow.length >= allNewsData.length) {
+                document.getElementById('load-more-news-container').classList.add('hidden');
+            } else {
+                document.getElementById('load-more-news-container').classList.remove('hidden');
+            }
+        }
+
+        // LOAD MORE
+        document.getElementById('load-more-news-btn').addEventListener('click', function() {
+            currentNewsPage++;
+            renderNewsPage();
+        });
+
+        // THEME TOGGLE (Scope khusus untuk Modal)
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.getElementById('intel-brief-modal').classList.toggle('dark');
+            const isDark = document.getElementById('intel-brief-modal').classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.getElementById('theme-icon-light').classList.toggle('hidden', isDark);
+            document.getElementById('theme-icon-dark').classList.toggle('hidden', !isDark);
+        });
+        
+        // Pengecekan tema saat awal muat
+        if (theme === 'dark') {
+            document.getElementById('intel-brief-modal').classList.add('dark');
+            document.getElementById('theme-icon-light').classList.add('hidden');
+            document.getElementById('theme-icon-dark').classList.remove('hidden');
+        }
+
+        // LIVE CLOCK
+        function updateClock() {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Jakarta', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString('en-US', options) + ' WIB';
+        }
+        updateClock(); setInterval(updateClock, 1000);
+
+        // PRINT - Hanya memprint modal
+        document.getElementById('print-document-btn').addEventListener('click', function() { 
+            document.body.classList.add('printing-intel');
+            window.print(); 
+            document.body.classList.remove('printing-intel');
+        });
+
+        // PDF EXPORT
+        document.getElementById('export-pdf-btn').addEventListener('click', async function() {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<svg class="w-4 h-4 animate-spin"><use href="#icon-refresh-cw"></use></svg> MENYIMPAN...';
+            btn.disabled = true;
+            try {
+                document.getElementById('intel-brief-modal').classList.add('pdf-exporting');
+                // Target hanya modal content, bukan seluruh body
+                const el = document.getElementById('intel-brief-modal'); 
+                const opt = { 
+                    margin: [0.3, 0.3, 0.3, 0.3], 
+                    filename: 'Agri_Intelligence_Brief.pdf', 
+                    image: { type: 'jpeg', quality: 0.95 }, 
+                    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false }, 
+                    jsPDF: { unit: 'in', format: 'a3', orientation: 'portrait' }, 
+                    pagebreak: { mode: 'css' } 
+                };
+                await html2pdf().set(opt).from(el).save();
+            } catch(e) { console.error('PDF gagal:', e); alert('Gagal ekspor PDF. Silakan gunakan fitur Print (Ctrl+P).'); }
+            finally {
+                document.getElementById('intel-brief-modal').classList.remove('pdf-exporting');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // SEARCH FILTER
+        document.getElementById('search-filter-input').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#verification-table-body tr');
+            rows.forEach(row => { row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none'; });
+        });
+    </script>
+</body>
+</html>
